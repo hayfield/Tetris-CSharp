@@ -21,11 +21,60 @@ namespace Tetris
         Block currentBlock;
 
         /// <summary>
+        /// Ticks the board forward one move
+        /// </summary>
+        public void tick()
+        {
+            if (currentBlock == null || !canDropFurther())
+            {
+                spawnBlock();
+            }
+        }
+
+        /// <summary>
         /// Creates a new block to play with
         /// </summary>
-        public void newBlock()
+        public void spawnBlock()
         {
             currentBlock = new Block();
+        }
+
+        /// <summary>
+        /// Checks to see whether the block can drop any futher
+        /// </summary>
+        /// <returns>Indicates whether the current block can drop any further</returns>
+        public Boolean canDropFurther()
+        {
+            Boolean canDrop = true;
+
+            if (blockIsOnBottom() || blockIsOnPile())
+            {
+                canDrop = false;
+            }
+
+            return canDrop;
+        }
+
+        /// <summary>
+        /// Checks to see whether the block is on the bottom of the board
+        /// </summary>
+        /// <returns>Indicates whether the current block is on the bottom of the board</returns>
+        public Boolean blockIsOnBottom()
+        {
+            Boolean onBottom = false;
+
+            return onBottom;
+        }
+
+        /// <summary>
+        /// Checks to see whether the block is on the pile of blocks at the bottom of the board
+        /// </summary>
+        /// <returns>Indicates whether the current block is on the pile of blocks at the bottom of the board</returns>
+        public Boolean blockIsOnPile()
+        {
+            Boolean onPile = false;
+
+            return onPile;
         }
     }
 }

@@ -17,6 +17,11 @@ namespace Tetris
         /// </summary>
         Boolean playing { get; set; }
 
+        /// <summary>
+        /// The board that the game is played on
+        /// </summary>
+        Board board;
+
         public TetrisGame()
         {
             InitializeComponent();
@@ -28,11 +33,11 @@ namespace Tetris
         }
 
         /// <summary>
-        /// Update the game on a tick update
+        /// Resets the game
         /// </summary>
-        private void tickUpdate()
+        private void resetGame()
         {
-
+            board = new Board();
         }
 
         /// <summary>
@@ -44,8 +49,13 @@ namespace Tetris
         {
             if (playing)
             {
-                tickUpdate();
+                board.tick();
             }
+        }
+
+        private void newGameButton_Click(object sender, EventArgs e)
+        {
+            resetGame();
         }
 
     }
