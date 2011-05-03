@@ -22,7 +22,7 @@ namespace Tetris
         /// <summary>
         /// The possible positions that a block can start in
         /// </summary>
-        BlockStartPosition[] positions = new BlockStartPosition[7];
+        public BlockStartPosition[] positions = new BlockStartPosition[7];
 
         /// <summary>
         /// Specify the possible positions that a block can start in

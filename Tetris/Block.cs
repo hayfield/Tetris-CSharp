@@ -12,14 +12,26 @@ namespace Tetris
     class Block
     {
         /// <summary>
+        /// Constructor
+        /// </summary>
+        public Block()
+        {
+            // decide which block it is
+            Random random = new Random();
+            BlockStartPosition startPos = new BlockStartPosition();
+            startPos = new PossibleBlockStartPositions().positions[random.Next(7)];
+            squares = startPos.position;
+            color = startPos.color;
+
+            // set the initial position
+            x = 3;
+            y = 0;
+        }
+
+        /// <summary>
         /// The color of the block
         /// </summary>
         public Color color { get; set; }
-
-        /// <summary>
-        /// The type of the block
-        /// </summary>
-        public int type { get; set; }
 
         /// <summary>
         /// The position of squares and blanks within the block
@@ -35,11 +47,6 @@ namespace Tetris
         /// The y coordinate of the block
         /// </summary>
         public int y { get; set; }
-
-        /// <summary>
-        /// Has the block settled on the bottom of the grid?
-        /// </summary>
-        public Boolean settled { get; set; }
 
     }
 }
