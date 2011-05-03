@@ -29,6 +29,43 @@ namespace Tetris
         }
 
         /// <summary>
+        /// Rotates the block clockwise
+        /// </summary>
+        public void rotateClockwise()
+        {
+            // would be quicker to use matrices, but thinking is hard ;P
+            Boolean[,] temp = new Boolean[4, 4];
+            temp[0,0] = squares[0,3];
+            temp[1,0] = squares[0,2];
+            temp[2,0] = squares[0,1];
+            temp[3,0] = squares[0,0];
+            temp[0,1] = squares[1,3];
+            temp[1,1] = squares[1,2];
+            temp[2,1] = squares[1,1];
+            temp[3,1] = squares[1,0];
+            temp[0,2] = squares[2,3];
+            temp[1,2] = squares[2,2];
+            temp[2,2] = squares[2,1];
+            temp[3,2] = squares[2,0];
+            temp[0,3] = squares[3,3];
+            temp[1,3] = squares[3,2];
+            temp[2,3] = squares[3,1];
+            temp[3,3] = squares[3,0];
+
+            squares = temp;
+        }
+
+        /// <summary>
+        /// Rotates the block anti-clockwise by rotating it clockwise three times
+        /// </summary>
+        public void rotateAntiClockwise()
+        {
+            rotateClockwise();
+            rotateClockwise();
+            rotateClockwise();
+        }
+
+        /// <summary>
         /// The color of the block
         /// </summary>
         public Color color { get; set; }
