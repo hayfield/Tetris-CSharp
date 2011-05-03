@@ -50,6 +50,7 @@
     <Compile Include="Block.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="PossibleBlockStartPositions.cs" />
     <Compile Include="TetrisGame.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -26,5 +26,20 @@ namespace Tetris
         /// </summary>
         public Boolean[,] squares = new Boolean[4, 4];
 
+        /// <summary>
+        /// The x coordinate of the block
+        /// </summary>
+        public int x { get; set; }
+
+        /// <summary>
+        /// The y coordinate of the block
+        /// </summary>
+        public int y { get; set; }
+
+        /// <summary>
+        /// Has the block settled on the bottom of the grid?
+        /// </summary>
+        public Boolean settled { get; set; }
+
     }
 }
