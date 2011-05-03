@@ -33,9 +33,25 @@ namespace Tetris
 
         }
 
+        /// <summary>
+        /// Update the game on a tick update
+        /// </summary>
+        private void tickUpdate()
+        {
+
+        }
+
+        /// <summary>
+        /// Update the game at the interval that is specified
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tickTimer_Tick(object sender, EventArgs e)
         {
-            
+            if (playing)
+            {
+                tickUpdate();
+            }
         }
 
         /// <summary>

@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BlockStartPosition.cs" />
     <Compile Include="Block.cs" />
+    <Compile Include="Board.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="TetrisGame.cs">
       <SubType>Form</SubType>
