@@ -25,6 +25,7 @@ namespace Tetris
         public TetrisGame()
         {
             InitializeComponent();
+            createSquares();
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -38,6 +39,23 @@ namespace Tetris
         private void resetGame()
         {
             board = new Board();
+        }
+
+        /// <summary>
+        /// Creates the squares which make up the visible portion of the board
+        /// </summary>
+        private void createSquares()
+        {
+            for (int row = 0; row < gameTable.RowCount; row++)
+            {
+                for (int col = 0; col < gameTable.ColumnCount; col++)
+                {
+                    Square square = new Square();
+                    square.Dock = DockStyle.Fill;
+                    square.Margin = Padding.Empty;
+                    gameTable.Controls.Add(square, row, col);
+                }
+            }
         }
 
         /// <summary>

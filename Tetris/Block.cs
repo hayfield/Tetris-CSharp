@@ -49,6 +49,17 @@ namespace Tetris
         public int y { get; set; }
 
         /// <summary>
+        /// Converts the coordinates of a square within the block to board-coodinate space
+        /// </summary>
+        /// <returns></returns>
+        public Coordinate toBoardCoordinates(Coordinate coord)
+        {
+            coord.x += x;
+            coord.y += y;
+            return coord;
+        }
+
+        /// <summary>
         /// Rotates the block clockwise
         /// </summary>
         public void rotateClockwise()

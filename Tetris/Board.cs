@@ -40,7 +40,32 @@ namespace Tetris
         /// </summary>
         private void spawnBlock()
         {
+            // lock the previous block into position
             currentBlock = new Block();
+        }
+
+        /// <summary>
+        /// Locks the current block into position on the board
+        /// </summary>
+        private void lockBlock()
+        {
+            if (currentBlock != null)
+            {
+                // loop through each of the squares within the current block
+                for (int i = 0; i < currentBlock.squares.GetLength(0); i++)
+                {
+                    for (int j = 0; i < currentBlock.squares.GetLength(1); j++)
+                    {
+                        // if there's something there
+                        if (currentBlock.squares[i, j])
+                        {
+                            // lock it into position on the board
+                            Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(currentBlock.x, currentBlock.y));
+                            board[coord.x, coord.y] = currentBlock.color.ToArgb();
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>

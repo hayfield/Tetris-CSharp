@@ -66,6 +66,12 @@
     <Compile Include="Board.cs" />
     <Compile Include="Coordinate.cs" />
     <Compile Include="PossibleBlockStartPositions.cs" />
+    <Compile Include="Square.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Square.Designer.cs">
+      <DependentUpon>Square.cs</DependentUpon>
+    </Compile>
     <Compile Include="TetrisGame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Square.resx">
+      <DependentUpon>Square.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TetrisGame.resx">
       <DependentUpon>TetrisGame.cs</DependentUpon>
     </EmbeddedResource>
