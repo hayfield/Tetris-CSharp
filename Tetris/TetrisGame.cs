@@ -78,12 +78,6 @@ namespace Tetris
             {
                 board.tick();
                 updateBoard();
-                rowsClearedLabel.Text = "playing " + DateTime.Now.Second.ToString();
-                rowsCleared.Text = DateTime.Now.Second.ToString();
-            }
-            else
-            {
-                rowsClearedLabel.Text = "rows: " + DateTime.Now.Second.ToString();
             }
         }
 
@@ -92,17 +86,24 @@ namespace Tetris
         /// </summary>
         private void updateBoard()
         {
+            // display based the contents of the board
             for (int row = 0; row < gameTable.RowCount; row++)
             {
                 for (int col = 0; col < gameTable.ColumnCount; col++)
                 {
                     squares[col, row].BackColor = Color.FromArgb(board.board[col, row + board.hiddenRows]);
-                    /*square = (Square)gameTable.Controls.Find("square" + row.ToString() + col.ToString(), true)[0];
-                    square.BackColor = Color.FromArgb(board.board[row, col + board.hiddenRows]);
-                    Square sq = new Square(2, 3);
-                    sq.Parent = gameTable.SetCellPosition*/
                 }
             }
+            
+            // display the current block
+            for (int row = 0; row < board.currentBlock.squares.GetLength(0); row++)
+            {
+                for (int col = 0; col < board.currentBlock.squares.GetLength(1); col++)
+                {
+                    
+                }
+            }
+            
         }
 
         private void newGameButton_Click(object sender, EventArgs e)

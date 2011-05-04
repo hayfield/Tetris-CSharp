@@ -18,7 +18,7 @@ namespace Tetris
         /// <summary>
         /// The block that is currently being played
         /// </summary>
-        Block currentBlock;
+        public Block currentBlock;
 
         /// <summary>
         /// The number of rows that are hidden above the top of the grid
