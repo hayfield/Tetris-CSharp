@@ -29,6 +29,26 @@ namespace Tetris
         }
 
         /// <summary>
+        /// The color of the block
+        /// </summary>
+        public Color color { get; set; }
+
+        /// <summary>
+        /// The position of squares and blanks within the block
+        /// </summary>
+        public Boolean[,] squares = new Boolean[4, 4];
+
+        /// <summary>
+        /// The x coordinate of the block
+        /// </summary>
+        public int x { get; set; }
+
+        /// <summary>
+        /// The y coordinate of the block
+        /// </summary>
+        public int y { get; set; }
+
+        /// <summary>
         /// Rotates the block clockwise
         /// </summary>
         public void rotateClockwise()
@@ -66,24 +86,25 @@ namespace Tetris
         }
 
         /// <summary>
-        /// The color of the block
+        /// Returns the lowest row with a square in
         /// </summary>
-        public Color color { get; set; }
+        public int lowestRowWithSquareIn()
+        {
+            int lowestRow = 0;
 
-        /// <summary>
-        /// The position of squares and blanks within the block
-        /// </summary>
-        public Boolean[,] squares = new Boolean[4, 4];
+            for (int i = 0; i < squares.GetLength(0); i++)
+            {
+                for (int j = 0; i < squares.GetLength(1); j++)
+                {
+                    if (squares[i, j])
+                    {
+                        lowestRow = j;
+                    }
+                }
+            }
 
-        /// <summary>
-        /// The x coordinate of the block
-        /// </summary>
-        public int x { get; set; }
-
-        /// <summary>
-        /// The y coordinate of the block
-        /// </summary>
-        public int y { get; set; }
+            return lowestRow;
+        }
 
     }
 }

@@ -63,6 +63,11 @@ namespace Tetris
         {
             Boolean onBottom = false;
 
+            if (currentBlock.x + currentBlock.lowestRowWithSquareIn() > board.GetLength(0) - 1)
+            {
+                onBottom = true;
+            }
+
             return onBottom;
         }
 
