@@ -126,7 +126,7 @@ namespace Tetris
 
             for (int i = 0; i < squares.GetLength(0); i++)
             {
-                for (int j = 0; i < squares.GetLength(1); j++)
+                for (int j = 0; j < squares.GetLength(1); j++)
                 {
                     if (squares[i, j])
                     {

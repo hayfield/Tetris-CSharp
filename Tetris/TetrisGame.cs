@@ -53,20 +53,16 @@ namespace Tetris
         /// </summary>
         private void createSquares()
         {
-            squares = new Square[gameTable.RowCount, gameTable.ColumnCount];
+            squares = new Square[gameTable.ColumnCount, gameTable.RowCount];
 
             for (int row = 0; row < gameTable.RowCount; row++)
             {
                 for (int col = 0; col < gameTable.ColumnCount; col++)
                 {
-                    squares[row, col] = new Square(row, col);
-                    squares[row, col].Dock = DockStyle.Fill;
-                    squares[row, col].Margin = Padding.Empty;
-                    gameTable.SetCellPosition(squares[row, col], new TableLayoutPanelCellPosition(col, row));
-                    /*Square square = new Square(row, col);
-                    square.Dock = DockStyle.Fill;
-                    square.Margin = Padding.Empty;
-                    gameTable.Controls.Add(square, row, col);*/
+                    squares[col, row] = new Square(row, col);
+                    squares[col, row].Dock = DockStyle.Fill;
+                    squares[col, row].Margin = Padding.Empty;
+                    gameTable.SetCellPosition(squares[col, row], new TableLayoutPanelCellPosition(col, row));
                 }
             }
         }
@@ -83,6 +79,7 @@ namespace Tetris
                 board.tick();
                 updateBoard();
                 rowsClearedLabel.Text = "playing " + DateTime.Now.Second.ToString();
+                rowsCleared.Text = DateTime.Now.Second.ToString();
             }
             else
             {
@@ -95,12 +92,11 @@ namespace Tetris
         /// </summary>
         private void updateBoard()
         {
-            Square square;
             for (int row = 0; row < gameTable.RowCount; row++)
             {
                 for (int col = 0; col < gameTable.ColumnCount; col++)
                 {
-                    squares[row, col].BackColor = Color.FromArgb(board.board[row, col + board.hiddenRows]);
+                    squares[col, row].BackColor = Color.FromArgb(board.board[col, row + board.hiddenRows]);
                     /*square = (Square)gameTable.Controls.Find("square" + row.ToString() + col.ToString(), true)[0];
                     square.BackColor = Color.FromArgb(board.board[row, col + board.hiddenRows]);
                     Square sq = new Square(2, 3);

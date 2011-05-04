@@ -90,7 +90,7 @@ namespace Tetris
         {
             Boolean hasSquare = false;
 
-            if (board[coord.x, coord.y] != 0)
+            if (coord.x < board.GetLength(0) && coord.y < board.GetLength(1) && board[coord.x, coord.y] != 0)
             {
                 hasSquare = true;
             }
