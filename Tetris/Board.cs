@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace Tetris
 {
@@ -11,9 +12,24 @@ namespace Tetris
     class Board
     {
         /// <summary>
+        /// Constructur to initialise the array to be showing PeachPuff color squares
+        /// </summary>
+        public Board()
+        {
+            int peachpuff = Color.PeachPuff.ToArgb();
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                    board[i, j] = peachpuff;
+                }
+            }
+        }
+
+        /// <summary>
         /// The board that is being played on
         /// </summary>
-        public int[,] board = new int[10,22];
+        public int[,] board = new int[10, 22];
 
         /// <summary>
         /// The block that is currently being played
