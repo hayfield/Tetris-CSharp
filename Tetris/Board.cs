@@ -29,9 +29,27 @@ namespace Tetris
             {
                 spawnBlock();
             }
+
+            lowerBlock();
         }
 
         #region Board
+
+        /// <summary>
+        /// Creates a new block to play with
+        /// </summary>
+        private void spawnBlock()
+        {
+            currentBlock = new Block();
+        }
+
+        /// <summary>
+        /// Lowers the current block down one row
+        /// </summary>
+        private void lowerBlock()
+        {
+            currentBlock.y++;
+        }
 
         /// <summary>
         /// Checks to see whether there is a square in the specified position on the Board
@@ -65,14 +83,6 @@ namespace Tetris
         #endregion Board
 
         #region Block
-
-        /// <summary>
-        /// Creates a new block to play with
-        /// </summary>
-        private void spawnBlock()
-        {
-            currentBlock = new Block();
-        }
 
         /// <summary>
         /// Checks to see whether the block can drop any futher
