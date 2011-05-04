@@ -86,8 +86,29 @@ namespace Tetris
         }
 
         /// <summary>
-        /// Returns the lowest row with a square in
+        /// Finds the columns with the lowest squares in
         /// </summary>
+        /// <returns>A list of integers containing the columns with the lowest squares in</returns>
+        public List<int> columnsWithLowestSquaresIn()
+        {
+            List<int> lowestColumns = new List<int>();
+            int lowestRow = lowestRowWithSquareIn();
+
+            for (int i = 0; i < squares.GetLength(1); i++)
+            {
+                if (squares[lowestRow, i])
+                {
+                    lowestColumns.Add(i);
+                }
+            }
+
+            return lowestColumns;
+        }
+
+        /// <summary>
+        /// Finds the lowest row with a square in
+        /// </summary>
+        /// <returns>The lowest row with a square in</returns>
         public int lowestRowWithSquareIn()
         {
             int lowestRow = 0;
