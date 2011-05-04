@@ -13,12 +13,17 @@ namespace Tetris
         /// <summary>
         /// The board that is being played on
         /// </summary>
-        int[,] board = new int[10,22];
+        public int[,] board = new int[10,22];
 
         /// <summary>
         /// The block that is currently being played
         /// </summary>
         Block currentBlock;
+
+        /// <summary>
+        /// The number of rows that are hidden above the top of the grid
+        /// </summary>
+        public readonly int hiddenRows = 2;
 
         /// <summary>
         /// Ticks the board forward one move
