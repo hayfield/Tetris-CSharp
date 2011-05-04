@@ -32,7 +32,7 @@ namespace Tetris
         {
             set
             {
-                this.color = value;
+                // this.color = value;
                 this.BackColor = Color.FromArgb(value);
             }
         }

@@ -79,6 +79,7 @@ namespace Tetris
                 board.tick();
                 updateBoard();
             }
+            rowsClearedLabel.Text = Color.Black.ToArgb().ToString();
         }
 
         /// <summary>
@@ -91,18 +92,18 @@ namespace Tetris
             {
                 for (int col = 0; col < gameTable.ColumnCount; col++)
                 {
-                    squares[col, row].BackColor = Color.FromArgb(board.board[col, row + board.hiddenRows]);
+                    squares[col, row].color = board.board[col, row + board.hiddenRows];
                 }
             }
             
             // display the current block
-            for (int row = 0; row < board.currentBlock.squares.GetLength(0); row++)
+           /* for (int row = 0; row < board.currentBlock.squares.GetLength(0); row++)
             {
                 for (int col = 0; col < board.currentBlock.squares.GetLength(1); col++)
                 {
                     
                 }
-            }
+            }*/
             
         }
 

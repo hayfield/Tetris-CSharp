@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace Tetris
 {
@@ -11,9 +12,24 @@ namespace Tetris
     class Board
     {
         /// <summary>
+        /// Constructor, initialises the grid as having black squares
+        /// </summary>
+        public Board()
+        {
+            int black = Color.Black.ToArgb();
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                    board[i, j] = black;
+                }
+            }
+        }
+
+        /// <summary>
         /// The board that is being played on
         /// </summary>
-        public int[,] board = new int[10,22];
+        public int[,] board = new int[10, 22];
 
         /// <summary>
         /// The block that is currently being played
@@ -32,6 +48,7 @@ namespace Tetris
         {
             if (currentBlock == null || !canDropFurther())
             {
+                lockBlock();
                 spawnBlock();
             }
 
@@ -56,10 +73,12 @@ namespace Tetris
         {
             if (currentBlock != null)
             {
+                int len0 = currentBlock.squares.GetLength(0);
+                int len1 = currentBlock.squares.GetLength(1);
                 // loop through each of the squares within the current block
-                for (int i = 0; i < currentBlock.squares.GetLength(0); i++)
+                for (int i = 0; i < len0; i++)
                 {
-                    for (int j = 0; i < currentBlock.squares.GetLength(1); j++)
+                    for (int j = 0; j < len1; j++)
                     {
                         // if there's something there
                         if (currentBlock.squares[i, j])
