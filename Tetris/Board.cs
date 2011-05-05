@@ -14,14 +14,15 @@ namespace Tetris
         /// <summary>
         /// Constructur to initialise the array to be showing PeachPuff color squares
         /// </summary>
-        public Board()
+        public Board(int numberOfRows, int numberOfColumns)
         {
+            board = new int[numberOfColumns, numberOfRows + hiddenRows];
             int peachpuff = Color.PeachPuff.ToArgb();
-            for (int i = 0; i < board.GetLength(0); i++)
+            for (int col = 0; col < numberOfColumns; col++)
             {
-                for (int j = 0; j < board.GetLength(1); j++)
+                for (int row = 0; row < numberOfRows; row++)
                 {
-                    board[i, j] = peachpuff;
+                    board[col, row] = peachpuff;
                 }
             }
         }
@@ -29,7 +30,7 @@ namespace Tetris
         /// <summary>
         /// The board that is being played on
         /// </summary>
-        public int[,] board = new int[10, 22];
+        public int[,] board;
 
         /// <summary>
         /// The block that is currently being played

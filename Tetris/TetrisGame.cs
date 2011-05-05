@@ -23,6 +23,16 @@ namespace Tetris
         Board board;
 
         /// <summary>
+        /// The number of visible columns on the board
+        /// </summary>
+        int numberOfColumns = 10;
+
+        /// <summary>
+        /// The number of visible rows on the board
+        /// </summary>
+        int numberOfRows = 20;
+
+        /// <summary>
         /// The size in px of each side of the squares
         /// </summary>
         int squareDimensions = 20;
@@ -48,7 +58,7 @@ namespace Tetris
         /// </summary>
         private void resetGame()
         {
-            board = new Board();
+            board = new Board(numberOfRows, numberOfColumns);
             tickTimer.Enabled = true;
             playing = true;
         }
@@ -60,9 +70,9 @@ namespace Tetris
         {
             //squares = new Square[gameTable.RowCount, gameTable.ColumnCount];
             List<string> keys = new List<string>();
-            for (int row = 0; row < gameTable.RowCount; row++)
+            for (int row = 0; row < numberOfRows; row++)
             {
-                for (int col = 0; col < gameTable.ColumnCount; col++)
+                for (int col = 0; col < numberOfColumns; col++)
                 {
                     Square square = new Square(row, col);
                     square.Width = squareDimensions;
@@ -102,9 +112,9 @@ namespace Tetris
         {
             // updates the color of each of the squares on the board
             Square square;
-            for (int row = 0; row < board.board.GetLength(1) - board.hiddenRows; row++)
+            for (int row = 0; row < numberOfRows; row++)
             {
-                for (int col = 0; col < board.board.GetLength(0); col++)
+                for (int col = 0; col < numberOfColumns; col++)
                 {
                     squares.TryGetValue(row.ToString() + col.ToString(), out square);
                     square.color = board.board[col, row + board.hiddenRows];
