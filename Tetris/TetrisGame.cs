@@ -23,9 +23,14 @@ namespace Tetris
         Board board;
 
         /// <summary>
+        /// The size in px of each side of the squares
+        /// </summary>
+        int squareDimensions = 20;
+
+        /// <summary>
         /// The squares that are visible on the board
         /// </summary>
-        Square[,] squares;
+        Dictionary<string, Square> squares = new Dictionary<string,Square>();
 
         public TetrisGame()
         {
@@ -53,21 +58,30 @@ namespace Tetris
         /// </summary>
         private void createSquares()
         {
-            squares = new Square[gameTable.RowCount, gameTable.ColumnCount];
+            //squares = new Square[gameTable.RowCount, gameTable.ColumnCount];
             List<string> keys = new List<string>();
             for (int row = 0; row < gameTable.RowCount; row++)
             {
                 for (int col = 0; col < gameTable.ColumnCount; col++)
                 {
+                    Square square = new Square(row, col);
+                    square.Width = squareDimensions;
+                    square.Height = squareDimensions;
+                    square.Parent = gameWindow;
+                    square.Top = row * squareDimensions;
+                    square.Left = col * squareDimensions;
+                    string key = row.ToString() + col.ToString();
+                    squares.Add(key, square);
+                    
                     /*squares[row, col] = new Square(row, col);
                     squares[row, col].Dock = DockStyle.Fill;
                     squares[row, col].Margin = Padding.Empty;
-                    gameTable.SetCellPosition(squares[row, col], new TableLayoutPanelCellPosition(col, row));*/
+                    gameTable.SetCellPosition(squares[row, col], new TableLayoutPanelCellPosition(col, row));
                     Square square = new Square(row, col);
                     square.Dock = DockStyle.Fill;
                     square.Margin = Padding.Empty;
                     gameTable.Controls.Add(square, row, col);
-                    keys.Add("square" + row.ToString() + col.ToString());
+                    keys.Add("square" + row.ToString() + col.ToString());*/
                 }
             }
         }
@@ -96,18 +110,21 @@ namespace Tetris
         /// </summary>
         private void updateBoard()
         {
-            gameTable.Controls.Clear();
-            List<Square> sq = new List<Square>();
-            for (int row = 0; row < gameTable.RowCount; row++)
+            //gameTable.Controls.Clear();
+            //List<Square> sq = new List<Square>();
+            for (int row = 0; row < 20; row++)
             {
-                for (int col = 0; col < gameTable.ColumnCount; col++)
+                for (int col = 0; col < 10; col++)
                 {
-                    Square square = new Square(row, col);
+                    Square square;
+                    squares.TryGetValue(row.ToString() + col.ToString(), out square);
+                    square.color = board.board[col, row + board.hiddenRows];
+                    /*Square square = new Square(row, col);
                     square.Dock = DockStyle.Fill;
                     square.Margin = Padding.Empty;
                     square.color = board.board[col, row + board.hiddenRows];
                     gameTable.Controls.Add(square, row, col);
-                    sq.Add(square);
+                    sq.Add(square);*/
                 }
             }
            /* int added = 0;
