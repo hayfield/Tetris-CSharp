@@ -97,6 +97,7 @@ namespace Tetris
         private void updateBoard()
         {
             gameTable.Controls.Clear();
+            List<Square> sq = new List<Square>();
             for (int row = 0; row < gameTable.RowCount; row++)
             {
                 for (int col = 0; col < gameTable.ColumnCount; col++)
@@ -106,6 +107,7 @@ namespace Tetris
                     square.Margin = Padding.Empty;
                     square.color = board.board[col, row + board.hiddenRows];
                     gameTable.Controls.Add(square, row, col);
+                    sq.Add(square);
                 }
             }
            /* int added = 0;
