@@ -42,6 +42,11 @@ namespace Tetris
         /// </summary>
         Dictionary<string, Square> squares = new Dictionary<string,Square>();
 
+        /// <summary>
+        /// The keybord input for the game
+        /// </summary>
+        Input input = new Input();
+
         public TetrisGame()
         {
             InitializeComponent();
@@ -141,6 +146,24 @@ namespace Tetris
         private void newGameButton_Click(object sender, EventArgs e)
         {
             resetGame();
+        }
+
+        private void TetrisGame_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            textBox1.Text = e.KeyChar.ToString();
+            if (playing)
+            {
+                if (e.KeyChar == input.downKey)
+                {
+                    board.lowerBlock();
+                }
+                updateBoard();
+            }
+        }
+
+        private void TetrisGame_KeyDown(object sender, KeyEventArgs e)
+        {
+            textBox2.Text = e.KeyValue.ToString();
         }
 
     }

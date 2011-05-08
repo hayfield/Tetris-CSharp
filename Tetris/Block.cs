@@ -128,7 +128,7 @@ namespace Tetris
             {
                 for (int j = 0; j < squares.GetLength(1); j++)
                 {
-                    if (squares[i, j])
+                    if (squares[j, i])
                     {
                         lowestRow = j;
                     }

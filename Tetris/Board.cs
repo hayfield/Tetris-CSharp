@@ -24,6 +24,7 @@ namespace Tetris
                     board[col, row] = boardColor;
                 }
             }
+            tick(); // stop a crash when holding a key down when starting a game
         }
 
         /// <summary>
@@ -100,9 +101,21 @@ namespace Tetris
         /// <summary>
         /// Lowers the current block down one row
         /// </summary>
-        private void lowerBlock()
+        public void lowerBlock()
         {
-            currentBlock.y++;
+            if (canDropFurther())
+            {
+                currentBlock.y++;
+            }
+            else
+            {
+                int len0 = board.GetLength(1);
+                //if (currentBlock.y + currentBlock.lowestRowWithSquareIn() - 1 > board.GetLength(1) - hiddenRows)
+                int low = currentBlock.lowestRowWithSquareIn();
+                Coordinate coord = new Coordinate(0, low);
+                coord = currentBlock.toBoardCoordinates(coord);
+                currentBlock.y = currentBlock.y;
+            }
         }
 
         /// <summary>
@@ -114,7 +127,8 @@ namespace Tetris
         {
             Boolean hasSquare = false;
 
-            if (board[coord.x, coord.y] != boardColor)
+            if (coord.x < board.GetLength(0) && coord.y < board.GetLength(1) && 
+                        board[coord.x, coord.y] != boardColor)
             {
                 hasSquare = true;
             }
@@ -162,7 +176,10 @@ namespace Tetris
         {
             Boolean onBottom = false;
             int len0 = board.GetLength(1);
-            if (currentBlock.y + currentBlock.lowestRowWithSquareIn() > board.GetLength(1) - hiddenRows + 1)
+            int lowestRow = currentBlock.lowestRowWithSquareIn();
+            Coordinate coord = new Coordinate(0, lowestRow);
+            coord = currentBlock.toBoardCoordinates(coord);
+            if(coord.y - 1 >= board.GetLength(1) - hiddenRows)
             {
                 onBottom = true;
             }

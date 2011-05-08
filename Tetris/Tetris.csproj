@@ -65,6 +65,7 @@
     <Compile Include="Block.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="Coordinate.cs" />
+    <Compile Include="Input.cs" />
     <Compile Include="PossibleBlockStartPositions.cs" />
     <Compile Include="Square.cs">
       <SubType>UserControl</SubType>
