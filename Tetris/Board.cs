@@ -107,15 +107,6 @@ namespace Tetris
             {
                 currentBlock.y++;
             }
-            else
-            {
-                int len0 = board.GetLength(1);
-                //if (currentBlock.y + currentBlock.lowestRowWithSquareIn() - 1 > board.GetLength(1) - hiddenRows)
-                int low = currentBlock.lowestRowWithSquareIn();
-                Coordinate coord = new Coordinate(0, low);
-                coord = currentBlock.toBoardCoordinates(coord);
-                currentBlock.y = currentBlock.y;
-            }
         }
 
         /// <summary>
@@ -127,7 +118,8 @@ namespace Tetris
         {
             Boolean hasSquare = false;
 
-            if (coord.x < board.GetLength(0) && coord.y < board.GetLength(1) && 
+            if (coord.x < board.GetLength(0) && coord.x >= 0 &&
+                coord.y < board.GetLength(1) && coord.y >= 0 &&
                         board[coord.x, coord.y] != boardColor)
             {
                 hasSquare = true;
@@ -144,6 +136,31 @@ namespace Tetris
         private Boolean hasSquareBelow(Coordinate coord)
         {
             coord.y++;
+
+            return hasSquare(coord);
+        }
+
+
+        /// <summary>
+        /// Checks to see whether there is a square in the position on the Board left of the specified coordinate
+        /// </summary>
+        /// <param name="coord">The coordinate to check left of</param>
+        /// <returns>Whether there is a square there or not</returns>
+        private Boolean hasSquareLeft(Coordinate coord)
+        {
+            coord.x--;
+
+            return hasSquare(coord);
+        }
+
+        /// <summary>
+        /// Checks to see whether there is a square in the position on the Board right of the specified coordinate
+        /// </summary>
+        /// <param name="coord">The coordinate to check right of</param>
+        /// <returns>Whether there is a square there or not</returns>
+        private Boolean hasSquareRight(Coordinate coord)
+        {
+            coord.x++;
 
             return hasSquare(coord);
         }
