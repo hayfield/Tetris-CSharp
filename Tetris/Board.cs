@@ -143,7 +143,7 @@ namespace Tetris
         /// <returns>Whether there is a square there or not</returns>
         private Boolean hasSquareBelow(Coordinate coord)
         {
-            coord.x++;
+            coord.y++;
 
             return hasSquare(coord);
         }
@@ -204,7 +204,7 @@ namespace Tetris
                     if (currentBlock.squares[j, i])
                     {
                         // check to see if there's anything below
-                        Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(i - 1, j + 1));
+                        Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(i, j));
                         if (hasSquareBelow(coord))
                         {
                             onPile = true;

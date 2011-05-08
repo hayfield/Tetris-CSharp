@@ -38,9 +38,9 @@
             this.rowsCleared = new System.Windows.Forms.Label();
             this.gameWindow = new System.Windows.Forms.Panel();
             this.upcomingBlocks = new System.Windows.Forms.Panel();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tickTimer = new System.Windows.Forms.Timer(this.components);
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tableLayout.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.upcomingBlocks.SuspendLayout();
@@ -51,7 +51,7 @@
             this.tableLayout.ColumnCount = 3;
             this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 87.89474F));
             this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.10526F));
-            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
+            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
             this.tableLayout.Controls.Add(this.menuStrip, 0, 0);
             this.tableLayout.Controls.Add(this.newGameButton, 1, 2);
             this.tableLayout.Controls.Add(this.rowsClearedLabel, 1, 3);
@@ -101,9 +101,9 @@
             // 
             this.tableLayout.SetColumnSpan(this.newGameButton, 2);
             this.newGameButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.newGameButton.Location = new System.Drawing.Point(495, 359);
+            this.newGameButton.Location = new System.Drawing.Point(494, 359);
             this.newGameButton.Name = "newGameButton";
-            this.newGameButton.Size = new System.Drawing.Size(158, 23);
+            this.newGameButton.Size = new System.Drawing.Size(159, 23);
             this.newGameButton.TabIndex = 3;
             this.newGameButton.Text = "New Game";
             this.newGameButton.UseVisualStyleBackColor = true;
@@ -113,7 +113,7 @@
             // 
             this.rowsClearedLabel.AutoSize = true;
             this.rowsClearedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowsClearedLabel.Location = new System.Drawing.Point(495, 390);
+            this.rowsClearedLabel.Location = new System.Drawing.Point(494, 390);
             this.rowsClearedLabel.Name = "rowsClearedLabel";
             this.rowsClearedLabel.Size = new System.Drawing.Size(58, 20);
             this.rowsClearedLabel.TabIndex = 4;
@@ -123,7 +123,7 @@
             // 
             this.rowsCleared.AutoSize = true;
             this.rowsCleared.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowsCleared.Location = new System.Drawing.Point(562, 390);
+            this.rowsCleared.Location = new System.Drawing.Point(561, 390);
             this.rowsCleared.Name = "rowsCleared";
             this.rowsCleared.Size = new System.Drawing.Size(19, 20);
             this.rowsCleared.TabIndex = 5;
@@ -135,7 +135,7 @@
             this.gameWindow.Location = new System.Drawing.Point(3, 29);
             this.gameWindow.Name = "gameWindow";
             this.tableLayout.SetRowSpan(this.gameWindow, 4);
-            this.gameWindow.Size = new System.Drawing.Size(486, 474);
+            this.gameWindow.Size = new System.Drawing.Size(485, 474);
             this.gameWindow.TabIndex = 6;
             // 
             // upcomingBlocks
@@ -144,10 +144,17 @@
             this.upcomingBlocks.Controls.Add(this.textBox2);
             this.upcomingBlocks.Controls.Add(this.textBox1);
             this.upcomingBlocks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.upcomingBlocks.Location = new System.Drawing.Point(495, 29);
+            this.upcomingBlocks.Location = new System.Drawing.Point(494, 29);
             this.upcomingBlocks.Name = "upcomingBlocks";
-            this.upcomingBlocks.Size = new System.Drawing.Size(158, 324);
+            this.upcomingBlocks.Size = new System.Drawing.Size(159, 324);
             this.upcomingBlocks.TabIndex = 7;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(32, 94);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 1;
             // 
             // textBox1
             // 
@@ -160,13 +167,6 @@
             // 
             this.tickTimer.Interval = 500;
             this.tickTimer.Tick += new System.EventHandler(this.tickTimer_Tick);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(32, 94);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
             // 
             // TetrisGame
             // 
