@@ -157,6 +157,14 @@ namespace Tetris
                 {
                     board.lowerBlock();
                 }
+                else if (e.KeyChar == input.leftKey)
+                {
+                    board.moveBlockLeft();
+                }
+                else if (e.KeyChar == input.rightKey)
+                {
+                    board.moveBlockRight();
+                }
                 updateBoard();
             }
         }

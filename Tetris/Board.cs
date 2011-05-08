@@ -27,6 +27,8 @@ namespace Tetris
             tick(); // stop a crash when holding a key down when starting a game
         }
 
+        #region variables
+
         /// <summary>
         /// The default color of the board when there are no blocks there
         /// </summary>
@@ -46,6 +48,8 @@ namespace Tetris
         /// The number of rows that are hidden above the top of the grid
         /// </summary>
         public readonly int hiddenRows = 2;
+
+        #endregion variables
 
         /// <summary>
         /// Ticks the board forward one move
@@ -98,6 +102,8 @@ namespace Tetris
             }
         }
 
+        #region blockMovement
+
         /// <summary>
         /// Lowers the current block down one row
         /// </summary>
@@ -108,6 +114,26 @@ namespace Tetris
                 currentBlock.y++;
             }
         }
+
+        /// <summary>
+        /// Moves the block left one column
+        /// </summary>
+        public void moveBlockLeft()
+        {
+            
+        }
+
+        /// <summary>
+        /// Moves the block right one column
+        /// </summary>
+        public void moveBlockRight()
+        {
+
+        }
+
+        #endregion blockMovement
+
+        #region blockPositionChecks
 
         /// <summary>
         /// Checks to see whether there is a square in the specified position on the Board
@@ -140,7 +166,6 @@ namespace Tetris
             return hasSquare(coord);
         }
 
-
         /// <summary>
         /// Checks to see whether there is a square in the position on the Board left of the specified coordinate
         /// </summary>
@@ -164,6 +189,8 @@ namespace Tetris
 
             return hasSquare(coord);
         }
+
+        #endregion blockPositionChecks
 
         #endregion Board
 
