@@ -17,15 +17,19 @@ namespace Tetris
         public Board(int numberOfRows, int numberOfColumns)
         {
             board = new int[numberOfColumns, numberOfRows + hiddenRows];
-            int peachpuff = Color.PeachPuff.ToArgb();
             for (int col = 0; col < numberOfColumns; col++)
             {
-                for (int row = 0; row < numberOfRows; row++)
+                for (int row = 0; row < numberOfRows + hiddenRows; row++)
                 {
-                    board[col, row] = peachpuff;
+                    board[col, row] = boardColor;
                 }
             }
         }
+
+        /// <summary>
+        /// The default color of the board when there are no blocks there
+        /// </summary>
+        int boardColor = Color.PeachPuff.ToArgb();
 
         /// <summary>
         /// The board that is being played on
@@ -35,7 +39,7 @@ namespace Tetris
         /// <summary>
         /// The block that is currently being played
         /// </summary>
-        Block currentBlock;
+        public Block currentBlock;
 
         /// <summary>
         /// The number of rows that are hidden above the top of the grid
@@ -63,6 +67,9 @@ namespace Tetris
         private void spawnBlock()
         {
             // lock the previous block into position
+            lockBlock();
+
+            // spawn a new block
             currentBlock = new Block();
         }
 
@@ -76,13 +83,13 @@ namespace Tetris
                 // loop through each of the squares within the current block
                 for (int i = 0; i < currentBlock.squares.GetLength(0); i++)
                 {
-                    for (int j = 0; i < currentBlock.squares.GetLength(1); j++)
+                    for (int j = 0; j < currentBlock.squares.GetLength(1); j++)
                     {
                         // if there's something there
-                        if (currentBlock.squares[i, j])
+                        if (currentBlock.squares[j, i])
                         {
                             // lock it into position on the board
-                            Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(currentBlock.x, currentBlock.y));
+                            Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(i, j));
                             board[coord.x, coord.y] = currentBlock.color.ToArgb();
                         }
                     }
@@ -107,7 +114,7 @@ namespace Tetris
         {
             Boolean hasSquare = false;
 
-            if (board[coord.x, coord.y] != 0)
+            if (board[coord.x, coord.y] != boardColor)
             {
                 hasSquare = true;
             }
@@ -154,8 +161,8 @@ namespace Tetris
         private Boolean blockIsOnBottom()
         {
             Boolean onBottom = false;
-
-            if (currentBlock.x + currentBlock.lowestRowWithSquareIn() > board.GetLength(0) - 1)
+            int len0 = board.GetLength(1);
+            if (currentBlock.y + currentBlock.lowestRowWithSquareIn() > board.GetLength(1) - hiddenRows + 1)
             {
                 onBottom = true;
             }
@@ -171,19 +178,21 @@ namespace Tetris
         {
             Boolean onPile = false;
 
-            int lowestRow = currentBlock.lowestRowWithSquareIn();
-            List<int> lowestColumns = currentBlock.columnsWithLowestSquaresIn();
-
-            // loop through and check whether any of the lowest sqaures are sitting on anything
-            foreach (int col in lowestColumns)
+            // loop through each of the squares within the current block
+            for (int i = 0; i < currentBlock.squares.GetLength(0); i++)
             {
-                int x = currentBlock.x + col;
-                int y = currentBlock.y + lowestRow;
-                Coordinate squarePos = new Coordinate(x, y);
-
-                if (hasSquareBelow(squarePos))
+                for (int j = 0; j < currentBlock.squares.GetLength(1); j++)
                 {
-                    onPile = true;
+                    // if there's something there
+                    if (currentBlock.squares[j, i])
+                    {
+                        // check to see if there's anything below
+                        Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(i - 1, j + 1));
+                        if (hasSquareBelow(coord))
+                        {
+                            onPile = true;
+                        }
+                    }
                 }
             }
 

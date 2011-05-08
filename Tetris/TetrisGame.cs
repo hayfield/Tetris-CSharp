@@ -68,8 +68,6 @@ namespace Tetris
         /// </summary>
         private void createSquares()
         {
-            //squares = new Square[gameTable.RowCount, gameTable.ColumnCount];
-            List<string> keys = new List<string>();
             for (int row = 0; row < numberOfRows; row++)
             {
                 for (int col = 0; col < numberOfColumns; col++)
@@ -110,7 +108,7 @@ namespace Tetris
         /// </summary>
         private void updateBoard()
         {
-            // updates the color of each of the squares on the board
+            // update the color of each of the squares on the board
             Square square;
             for (int row = 0; row < numberOfRows; row++)
             {
@@ -118,6 +116,24 @@ namespace Tetris
                 {
                     squares.TryGetValue(row.ToString() + col.ToString(), out square);
                     square.color = board.board[col, row + board.hiddenRows];
+                }
+            }
+
+            // then display the current block
+            Block block = board.currentBlock; // cache the block to make the code read a bit better
+            for (int row = 0; row < block.squares.GetLength(0); row++)
+            {
+                for (int col = 0; col < block.squares.GetLength(1); col++)
+                {
+                    Coordinate coord = new Coordinate(col, row);
+                    coord = block.toBoardCoordinates(coord);
+                    if (block.squares[row, col] && coord.x > 0 && coord.x < numberOfColumns
+                            && coord.y >= board.hiddenRows && coord.y < numberOfRows + board.hiddenRows)
+                    {
+                        string key = (coord.y - board.hiddenRows).ToString() + coord.x.ToString();
+                        squares.TryGetValue(key, out square);
+                        square.color = block.color.ToArgb();
+                    }
                 }
             }
         }
