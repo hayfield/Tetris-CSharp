@@ -38,7 +38,8 @@ namespace Tetris
         int boardColor = Color.PeachPuff.ToArgb();
 
         /// <summary>
-        /// The board that is being played on
+        /// The board that is being played on.
+        /// board[col, row]
         /// </summary>
         public int[,] board;
 
@@ -80,6 +81,7 @@ namespace Tetris
             }
 
             lowerBlock();
+            manageFullRows();
         }
 
         #region Board
@@ -119,6 +121,70 @@ namespace Tetris
                 }
             }
         }
+
+        #region gameEvents
+
+        /// <summary>
+        /// Checks each of the rows and removes it if it's full, starting at the top and moving down.
+        /// </summary>
+        private void manageFullRows()
+        {
+            for (int row = hiddenRows; row < numberOfRowsTotal; row++)
+                manageFullRow(row);
+        }
+
+        /// <summary>
+        /// Checks to see whether a specified row is full.
+        /// If it is, deletes the row and moves down the board above it.
+        /// </summary>
+        /// <param name="rowToCheck">The row in terms of board[col, row] to check</param>
+        private void manageFullRow(int rowToCheck)
+        {
+            if (hasFullRow(rowToCheck))
+                removeRow(rowToCheck);
+        }
+
+        /// <summary>
+        /// Checks to see whether the specified row is full and should be removed
+        /// </summary>
+        /// <param name="rowToCheck">The row in terms of board[col, row] to check</param>
+        /// <returns>Whether the specified row is full</returns>
+        private Boolean hasFullRow(int rowToCheck)
+        {
+            Boolean full = true;
+
+            for (int col = 0; col < numberOfColumns; col++)
+            {
+                if (board[col, rowToCheck] == boardColor)
+                    full = false;
+            }
+
+            return full;
+        }
+
+        /// <summary>
+        /// Removes a row from the game board and drops the remaining squares down from above
+        /// </summary>
+        /// <param name="row">The row in terms of board[col, row] to remove</param>
+        private void removeRow(int rowToRemove)
+        {
+            if (rowToRemove == 0)
+                return;
+
+            // start on the specified row and move up
+            for (int row = rowToRemove; row > 0; row--)
+            {
+                // passing through each column
+                for (int col = 0; col < numberOfColumns; col++)
+                {
+                    // and overwriting the current position with the one above
+                    board[col, row] = board[col, row - 1];
+                }
+            }
+        }
+
+        #endregion gameEvents
+
 
         #region blockMovement
 
