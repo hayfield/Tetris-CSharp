@@ -49,6 +49,15 @@ namespace Tetris
         public int y { get; set; }
 
         /// <summary>
+        /// Clones the current block
+        /// </summary>
+        /// <returns>A clone of the current block</returns>
+        public Block Clone()
+        {
+            return (Block)this.MemberwiseClone();
+        }
+
+        /// <summary>
         /// Converts the coordinates of a square within the block to board-coodinate space
         /// </summary>
         /// <returns></returns>

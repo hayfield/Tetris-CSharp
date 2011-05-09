@@ -192,7 +192,10 @@ namespace Tetris
         /// </summary>
         public void rotateBlock()
         {
-            currentBlock.rotateClockwise();
+            Block rotated = currentBlock.Clone();
+            rotated.rotateClockwise();
+            if (canBeHere(rotated))
+                currentBlock.rotateClockwise();
         }
 
         /// <summary>
@@ -307,6 +310,37 @@ namespace Tetris
             coord.x++;
 
             return hasSquare(coord);
+        }
+
+        /// <summary>
+        /// Checks to see whether the block is allowed to be in the specified position
+        /// </summary>
+        /// <param name="block">The block to check</param>
+        /// <returns>Whether the block is allowed to be there</returns>
+        private Boolean canBeHere(Block block)
+        {
+            Boolean canBeHere = true;
+
+            // loop through each of the squares within the current block
+            for (int i = 0; i < currentBlock.squares.GetLength(0); i++)
+            {
+                for (int j = 0; j < currentBlock.squares.GetLength(1); j++)
+                {
+                    // if there's something there
+                    if (currentBlock.squares[i, j])
+                    {
+                        // check to see if there's something already here
+                        Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(i, j));
+                        if (hasSquare(coord) || coord.x >= numberOfColumns || coord.x < 0
+                                || coord.y >= numberOfRowsTotal)
+                        {
+                            canBeHere = false;
+                        }
+                    }
+                }
+            }
+
+            return canBeHere;
         }
 
         #endregion blockPositionChecks
