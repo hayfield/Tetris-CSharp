@@ -138,5 +138,50 @@ namespace Tetris
             return lowestRow;
         }
 
+        /// <summary>
+        /// Finds the row furthest to the left with a square in
+        /// </summary>
+        /// <returns>The row furthest to the left with a square in</returns>
+        public int leftestColumnWithSquareIn()
+        {
+            int leftestCol = 0;
+
+            for (int col = squares.GetLength(1) - 1; col >=0 ; col--)
+            {
+                for (int row = 0; row < squares.GetLength(0); row++)
+                {
+                    if (squares[row, col])
+                    {
+                        leftestCol = col;
+                    }
+                }
+            }
+
+            return leftestCol;
+        }
+
+        /// <summary>
+        /// Finds the row furthest to the right with a square in
+        /// </summary>
+        /// <returns>The row furthest to the right with a square in</returns>
+        public int rightestColumnWithSquareIn()
+        {
+            int rightestCol = 0;
+
+            for (int col = 0; col < squares.GetLength(1); col++)
+            {
+                for (int row = 0; row < squares.GetLength(0); row++)
+                {
+                    if (squares[row, col])
+                    {
+                        rightestCol = col;
+                    }
+                }
+            }
+
+            return rightestCol;
+        }
+
+
     }
 }

@@ -14,16 +14,19 @@ namespace Tetris
         /// <summary>
         /// Constructur to initialise the array to be showing PeachPuff color squares
         /// </summary>
-        public Board(int numberOfRows, int numberOfColumns)
+        public Board(int noOfRows, int noOfColumns)
         {
-            board = new int[numberOfColumns, numberOfRows + hiddenRows];
-            for (int col = 0; col < numberOfColumns; col++)
+            board = new int[noOfColumns, noOfRows + hiddenRows];
+            for (int col = 0; col < noOfColumns; col++)
             {
-                for (int row = 0; row < numberOfRows + hiddenRows; row++)
+                for (int row = 0; row < noOfRows + hiddenRows; row++)
                 {
                     board[col, row] = boardColor;
                 }
             }
+            numberOfColumns = noOfColumns;
+            numberOfRows = noOfRows;
+            numberOfRowsTotal = noOfRows + hiddenRows;
             tick(); // stop a crash when holding a key down when starting a game
         }
 
@@ -48,6 +51,21 @@ namespace Tetris
         /// The number of rows that are hidden above the top of the grid
         /// </summary>
         public readonly int hiddenRows = 2;
+
+        /// <summary>
+        /// The number of visible columns on the board
+        /// </summary>
+        int numberOfColumns;
+
+        /// <summary>
+        /// The number of rows on the board
+        /// </summary>
+        int numberOfRows;
+
+        /// <summary>
+        /// The total number of rows on the board
+        /// </summary>
+        int numberOfRowsTotal;
 
         #endregion variables
 
@@ -120,7 +138,11 @@ namespace Tetris
         /// </summary>
         public void moveBlockLeft()
         {
-            
+            if (!hasBlockToSide(false))
+            {
+                currentBlock.x--;
+            }
+            trapBlock();
         }
 
         /// <summary>
@@ -128,7 +150,31 @@ namespace Tetris
         /// </summary>
         public void moveBlockRight()
         {
+            if (!hasBlockToSide(true))
+            {
+                currentBlock.x++;
+            }
+            trapBlock();
+        }
 
+        /// <summary>
+        /// Traps the block within the bounds of the arena
+        /// </summary>
+        private void trapBlock()
+        {
+            // find where the block's bounds are
+            int leftest = currentBlock.leftestColumnWithSquareIn();
+            int rightest = currentBlock.rightestColumnWithSquareIn();
+            Coordinate leftestCoord = new Coordinate(leftest, 0);
+            leftestCoord = currentBlock.toBoardCoordinates(leftestCoord);
+            Coordinate rightestCoord = new Coordinate(rightest, 0);
+            rightestCoord = currentBlock.toBoardCoordinates(rightestCoord);
+
+            // trap it
+            if (leftestCoord.x < 0)
+                currentBlock.x++;
+            if (rightestCoord.x >= numberOfColumns)
+                currentBlock.x--;
         }
 
         #endregion blockMovement
@@ -144,8 +190,8 @@ namespace Tetris
         {
             Boolean hasSquare = false;
 
-            if (coord.x < board.GetLength(0) && coord.x >= 0 &&
-                coord.y < board.GetLength(1) && coord.y >= 0 &&
+            if (coord.x < numberOfColumns && coord.x >= 0 &&
+                coord.y < numberOfRowsTotal && coord.y >= 0 &&
                         board[coord.x, coord.y] != boardColor)
             {
                 hasSquare = true;
@@ -171,7 +217,7 @@ namespace Tetris
         /// </summary>
         /// <param name="coord">The coordinate to check left of</param>
         /// <returns>Whether there is a square there or not</returns>
-        private Boolean hasSquareLeft(Coordinate coord)
+        private Boolean hasSquareToLeft(Coordinate coord)
         {
             coord.x--;
 
@@ -183,7 +229,7 @@ namespace Tetris
         /// </summary>
         /// <param name="coord">The coordinate to check right of</param>
         /// <returns>Whether there is a square there or not</returns>
-        private Boolean hasSquareRight(Coordinate coord)
+        private Boolean hasSquareToRight(Coordinate coord)
         {
             coord.x++;
 
@@ -223,7 +269,7 @@ namespace Tetris
             int lowestRow = currentBlock.lowestRowWithSquareIn();
             Coordinate coord = new Coordinate(0, lowestRow);
             coord = currentBlock.toBoardCoordinates(coord);
-            if(coord.y - 1 >= board.GetLength(1) - hiddenRows)
+            if(coord.y - 1 >= numberOfRows)
             {
                 onBottom = true;
             }
@@ -258,6 +304,35 @@ namespace Tetris
             }
 
             return onPile;
+        }
+
+        /// <summary>
+        /// Checks to see whether there's something in the way to one side of the block
+        /// </summary>
+        /// <returns>Indicates whether the current block would be free to move to the specified side</returns>
+        private Boolean hasBlockToSide(Boolean toRight)
+        {
+            Boolean obstruction = false;
+
+            // loop through each of the squares within the current block
+            for (int i = 0; i < currentBlock.squares.GetLength(0); i++)
+            {
+                for (int j = 0; j < currentBlock.squares.GetLength(1); j++)
+                {
+                    // if there's something there
+                    if (currentBlock.squares[j, i])
+                    {
+                        // check to see if there's anything in the way
+                        Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(i, j));
+                        if ((toRight && hasSquareToRight(coord)) || (!toRight && hasSquareToLeft(coord)))
+                        {
+                            obstruction = true;
+                        }
+                    }
+                }
+            }
+
+            return obstruction;
         }
 
         #endregion Block
