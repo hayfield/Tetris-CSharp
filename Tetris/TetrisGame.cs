@@ -132,7 +132,7 @@ namespace Tetris
                 {
                     Coordinate coord = new Coordinate(col, row);
                     coord = block.toBoardCoordinates(coord);
-                    if (block.squares[row, col] && coord.x > 0 && coord.x < numberOfColumns
+                    if (block.squares[row, col] && coord.x >= 0 && coord.x < numberOfColumns
                             && coord.y >= board.hiddenRows && coord.y < numberOfRows + board.hiddenRows)
                     {
                         string key = (coord.y - board.hiddenRows).ToString() + coord.x.ToString();
