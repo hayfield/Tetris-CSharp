@@ -143,11 +143,21 @@ namespace Tetris
             }
         }
 
+        /// <summary>
+        /// Create a new game when the 'New Game' button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void newGameButton_Click(object sender, EventArgs e)
         {
             resetGame();
         }
 
+        /// <summary>
+        /// Listen for input from the keyboard and respond accordingly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TetrisGame_KeyPress(object sender, KeyPressEventArgs e)
         {
             textBox1.Text = e.KeyChar.ToString();
