@@ -185,8 +185,15 @@ namespace Tetris
 
         #endregion gameEvents
 
-
         #region blockMovement
+
+        /// <summary>
+        /// Rotates the block 90 degrees clockwise
+        /// </summary>
+        public void rotateBlock()
+        {
+            currentBlock.rotateClockwise();
+        }
 
         /// <summary>
         /// Lowers the current block down one row

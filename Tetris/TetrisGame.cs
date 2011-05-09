@@ -175,6 +175,10 @@ namespace Tetris
                 {
                     board.moveBlockRight();
                 }
+                else if (e.KeyChar == input.rotateKey)
+                {
+                    board.rotateBlock();
+                }
                 updateBoard();
             }
         }
