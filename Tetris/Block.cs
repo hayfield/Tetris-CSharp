@@ -34,7 +34,10 @@ namespace Tetris
         public Color color { get; set; }
 
         /// <summary>
-        /// The position of squares and blanks within the block
+        /// The position of squares and blanks within the block.
+        /// squares[row, col]. Col = 0, Row = 1 for GetLength()
+        /// Not consistent with the board, but it makes the visualisations for
+        /// the starting positions clearer.
         /// </summary>
         public Boolean[,] squares = new Boolean[4, 4];
 
@@ -114,11 +117,11 @@ namespace Tetris
             List<int> lowestColumns = new List<int>();
             int lowestRow = lowestRowWithSquareIn();
 
-            for (int i = 0; i < squares.GetLength(1); i++)
+            for (int col = 0; col < squares.GetLength(0); col++)
             {
-                if (squares[lowestRow, i])
+                if (squares[col, lowestRow])
                 {
-                    lowestColumns.Add(i);
+                    lowestColumns.Add(col);
                 }
             }
 
@@ -133,13 +136,13 @@ namespace Tetris
         {
             int lowestRow = 0;
 
-            for (int i = 0; i < squares.GetLength(0); i++)
+            for (int col = 0; col < squares.GetLength(0); col++)
             {
-                for (int j = 0; j < squares.GetLength(1); j++)
+                for (int row = 0; row < squares.GetLength(1); row++)
                 {
-                    if (squares[j, i])
+                    if (squares[row, col])
                     {
-                        lowestRow = j;
+                        lowestRow = row;
                     }
                 }
             }
@@ -155,9 +158,9 @@ namespace Tetris
         {
             int leftestCol = 0;
 
-            for (int col = squares.GetLength(1) - 1; col >=0 ; col--)
+            for (int col = squares.GetLength(0) - 1; col >=0 ; col--)
             {
-                for (int row = 0; row < squares.GetLength(0); row++)
+                for (int row = 0; row < squares.GetLength(1); row++)
                 {
                     if (squares[row, col])
                     {
@@ -177,9 +180,9 @@ namespace Tetris
         {
             int rightestCol = 0;
 
-            for (int col = 0; col < squares.GetLength(1); col++)
+            for (int col = 0; col < squares.GetLength(0); col++)
             {
-                for (int row = 0; row < squares.GetLength(0); row++)
+                for (int row = 0; row < squares.GetLength(1); row++)
                 {
                     if (squares[row, col])
                     {

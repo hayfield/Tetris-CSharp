@@ -106,15 +106,15 @@ namespace Tetris
             if (currentBlock != null)
             {
                 // loop through each of the squares within the current block
-                for (int i = 0; i < currentBlock.squares.GetLength(0); i++)
+                for (int col = 0; col < currentBlock.squares.GetLength(0); col++)
                 {
-                    for (int j = 0; j < currentBlock.squares.GetLength(1); j++)
+                    for (int row = 0; row < currentBlock.squares.GetLength(1); row++)
                     {
                         // if there's something there
-                        if (currentBlock.squares[j, i])
+                        if (currentBlock.squares[row, col])
                         {
                             // lock it into position on the board
-                            Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(i, j));
+                            Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(col, row));
                             board[coord.x, coord.y] = currentBlock.color.ToArgb();
                         }
                     }
@@ -322,15 +322,15 @@ namespace Tetris
             Boolean canBeHere = true;
 
             // loop through each of the squares within the current block
-            for (int i = 0; i < currentBlock.squares.GetLength(0); i++)
+            for (int col = 0; col < currentBlock.squares.GetLength(0); col++)
             {
-                for (int j = 0; j < currentBlock.squares.GetLength(1); j++)
+                for (int row = 0; row < currentBlock.squares.GetLength(1); row++)
                 {
                     // if there's something there
-                    if (currentBlock.squares[i, j])
+                    if (currentBlock.squares[row, col])
                     {
                         // check to see if there's something already here
-                        Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(i, j));
+                        Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(col, row));
                         if (hasSquare(coord) || coord.x >= numberOfColumns || coord.x < 0
                                 || coord.y >= numberOfRowsTotal)
                         {
@@ -357,6 +357,12 @@ namespace Tetris
         {
             Boolean canDrop = true;
 
+            /*Block dropped = currentBlock.Clone();
+            dropped.y++;
+
+            if (!canBeHere(dropped))
+                canDrop = false;*/
+
             if (blockIsOnBottom() || blockIsOnPile())
             {
                 canDrop = false;
@@ -372,7 +378,6 @@ namespace Tetris
         private Boolean blockIsOnBottom()
         {
             Boolean onBottom = false;
-            int len0 = board.GetLength(1);
             int lowestRow = currentBlock.lowestRowWithSquareIn();
             Coordinate coord = new Coordinate(0, lowestRow);
             coord = currentBlock.toBoardCoordinates(coord);
@@ -393,15 +398,15 @@ namespace Tetris
             Boolean onPile = false;
 
             // loop through each of the squares within the current block
-            for (int i = 0; i < currentBlock.squares.GetLength(0); i++)
+            for (int col = 0; col < currentBlock.squares.GetLength(0); col++)
             {
-                for (int j = 0; j < currentBlock.squares.GetLength(1); j++)
+                for (int row = 0; row < currentBlock.squares.GetLength(1); row++)
                 {
                     // if there's something there
-                    if (currentBlock.squares[j, i])
+                    if (currentBlock.squares[row, col])
                     {
                         // check to see if there's anything below
-                        Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(i, j));
+                        Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(col, row));
                         if (hasSquareBelow(coord))
                         {
                             onPile = true;
@@ -421,16 +426,25 @@ namespace Tetris
         {
             Boolean obstruction = false;
 
+            /*Block moved = currentBlock.Clone();
+            if (toRight)
+                moved.x++;
+            else
+                moved.x--;
+            if (!canBeHere(moved))
+                obstruction = true;
+                //currentBlock.rotateClockwise();*/
+
             // loop through each of the squares within the current block
-            for (int i = 0; i < currentBlock.squares.GetLength(0); i++)
+            for (int col = 0; col < currentBlock.squares.GetLength(0); col++)
             {
-                for (int j = 0; j < currentBlock.squares.GetLength(1); j++)
+                for (int row = 0; row < currentBlock.squares.GetLength(1); row++)
                 {
                     // if there's something there
-                    if (currentBlock.squares[j, i])
+                    if (currentBlock.squares[row, col])
                     {
                         // check to see if there's anything in the way
-                        Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(i, j));
+                        Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(col, row));
                         if ((toRight && hasSquareToRight(coord)) || (!toRight && hasSquareToLeft(coord)))
                         {
                             obstruction = true;
