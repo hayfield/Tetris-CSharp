@@ -357,11 +357,13 @@ namespace Tetris
         {
             Boolean canDrop = true;
 
-            /*Block dropped = currentBlock.Clone();
+            /*
+            Block dropped = currentBlock.Clone();
             dropped.y++;
 
             if (!canBeHere(dropped))
-                canDrop = false;*/
+                canDrop = false;
+            */
 
             if (blockIsOnBottom() || blockIsOnPile())
             {
@@ -432,10 +434,10 @@ namespace Tetris
             else
                 moved.x--;
             if (!canBeHere(moved))
-                obstruction = true;
-                //currentBlock.rotateClockwise();*/
+                obstruction = true;*/
 
             // loop through each of the squares within the current block
+            
             for (int col = 0; col < currentBlock.squares.GetLength(0); col++)
             {
                 for (int row = 0; row < currentBlock.squares.GetLength(1); row++)
@@ -452,6 +454,7 @@ namespace Tetris
                     }
                 }
             }
+            
 
             return obstruction;
         }
