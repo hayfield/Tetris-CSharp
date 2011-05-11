@@ -428,16 +428,16 @@ namespace Tetris
         {
             Boolean obstruction = false;
 
-            /*Block moved = currentBlock.Clone();
+            Block moved = currentBlock.Clone();
             if (toRight)
                 moved.x++;
             else
                 moved.x--;
             if (!canBeHere(moved))
-                obstruction = true;*/
+                obstruction = true;
 
             // loop through each of the squares within the current block
-            
+            /*
             for (int col = 0; col < currentBlock.squares.GetLength(0); col++)
             {
                 for (int row = 0; row < currentBlock.squares.GetLength(1); row++)
@@ -454,7 +454,7 @@ namespace Tetris
                     }
                 }
             }
-            
+            */
 
             return obstruction;
         }
