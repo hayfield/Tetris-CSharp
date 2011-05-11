@@ -357,18 +357,18 @@ namespace Tetris
         {
             Boolean canDrop = true;
 
-            /*
+            
             Block dropped = currentBlock.Clone();
             dropped.y++;
 
             if (!canBeHere(dropped))
                 canDrop = false;
-            */
+            
 
-            if (blockIsOnBottom() || blockIsOnPile())
+            /*if (blockIsOnBottom() || blockIsOnPile())
             {
                 canDrop = false;
-            }
+            }*/
 
             return canDrop;
         }
