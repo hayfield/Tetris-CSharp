@@ -278,42 +278,6 @@ namespace Tetris
         }
 
         /// <summary>
-        /// Checks to see whether there is a square in the position on the Board below the specified coordinate
-        /// </summary>
-        /// <param name="coord">The coordinate to check below</param>
-        /// <returns>Whether there is a square there or not</returns>
-        private Boolean hasSquareBelow(Coordinate coord)
-        {
-            coord.y++;
-
-            return hasSquare(coord);
-        }
-
-        /// <summary>
-        /// Checks to see whether there is a square in the position on the Board left of the specified coordinate
-        /// </summary>
-        /// <param name="coord">The coordinate to check left of</param>
-        /// <returns>Whether there is a square there or not</returns>
-        private Boolean hasSquareToLeft(Coordinate coord)
-        {
-            coord.x--;
-
-            return hasSquare(coord);
-        }
-
-        /// <summary>
-        /// Checks to see whether there is a square in the position on the Board right of the specified coordinate
-        /// </summary>
-        /// <param name="coord">The coordinate to check right of</param>
-        /// <returns>Whether there is a square there or not</returns>
-        private Boolean hasSquareToRight(Coordinate coord)
-        {
-            coord.x++;
-
-            return hasSquare(coord);
-        }
-
-        /// <summary>
         /// Checks to see whether the block is allowed to be in the specified position
         /// </summary>
         /// <param name="block">The block to check</param>
@@ -364,61 +328,8 @@ namespace Tetris
 
             if (!canBeHere(whenDropped))
                 canDrop = false;
-            
-
-            /*if (blockIsOnBottom() || blockIsOnPile())
-            {
-                canDrop = false;
-            }*/
 
             return canDrop;
-        }
-
-        /// <summary>
-        /// Checks to see whether the block is on the bottom of the board
-        /// </summary>
-        /// <returns>Indicates whether the current block is on the bottom of the board</returns>
-        private Boolean blockIsOnBottom()
-        {
-            Boolean onBottom = false;
-            int lowestRow = currentBlock.lowestRowWithSquareIn();
-            Coordinate coord = new Coordinate(0, lowestRow);
-            coord = currentBlock.toBoardCoordinates(coord);
-            if(coord.y - 1 >= numberOfRows)
-            {
-                onBottom = true;
-            }
-
-            return onBottom;
-        }
-
-        /// <summary>
-        /// Checks to see whether the block is on the pile of blocks at the bottom of the board
-        /// </summary>
-        /// <returns>Indicates whether the current block is on the pile of blocks at the bottom of the board</returns>
-        private Boolean blockIsOnPile()
-        {
-            Boolean onPile = false;
-
-            // loop through each of the squares within the current block
-            for (int col = 0; col < currentBlock.squares.GetLength(0); col++)
-            {
-                for (int row = 0; row < currentBlock.squares.GetLength(1); row++)
-                {
-                    // if there's something there
-                    if (currentBlock.squares[row, col])
-                    {
-                        // check to see if there's anything below
-                        Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(col, row));
-                        if (hasSquareBelow(coord))
-                        {
-                            onPile = true;
-                        }
-                    }
-                }
-            }
-
-            return onPile;
         }
 
         /// <summary>
@@ -437,26 +348,6 @@ namespace Tetris
 
             if (!canBeHere(whenMoved))
                 obstruction = true;
-
-            // loop through each of the squares within the current block
-            /*
-            for (int col = 0; col < currentBlock.squares.GetLength(0); col++)
-            {
-                for (int row = 0; row < currentBlock.squares.GetLength(1); row++)
-                {
-                    // if there's something there
-                    if (currentBlock.squares[row, col])
-                    {
-                        // check to see if there's anything in the way
-                        Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(col, row));
-                        if ((toRight && hasSquareToRight(coord)) || (!toRight && hasSquareToLeft(coord)))
-                        {
-                            obstruction = true;
-                        }
-                    }
-                }
-            }
-            */
 
             return obstruction;
         }
