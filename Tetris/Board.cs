@@ -322,15 +322,15 @@ namespace Tetris
             Boolean canBeHere = true;
 
             // loop through each of the squares within the current block
-            for (int col = 0; col < currentBlock.squares.GetLength(0); col++)
+            for (int col = 0; col < block.squares.GetLength(0); col++)
             {
-                for (int row = 0; row < currentBlock.squares.GetLength(1); row++)
+                for (int row = 0; row < block.squares.GetLength(1); row++)
                 {
                     // if there's something there
                     if (block.squares[row, col])
                     {
                         // check to see if there's something already here
-                        Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(col, row));
+                        Coordinate coord = block.toBoardCoordinates(new Coordinate(col, row));
                         if (hasSquare(coord) || coord.x >= numberOfColumns || coord.x < 0
                                 || coord.y >= numberOfRowsTotal)
                         {
