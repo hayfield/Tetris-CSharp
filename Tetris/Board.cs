@@ -327,7 +327,7 @@ namespace Tetris
                 for (int row = 0; row < currentBlock.squares.GetLength(1); row++)
                 {
                     // if there's something there
-                    if (currentBlock.squares[row, col])
+                    if (block.squares[row, col])
                     {
                         // check to see if there's something already here
                         Coordinate coord = currentBlock.toBoardCoordinates(new Coordinate(col, row));
