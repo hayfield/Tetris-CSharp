@@ -219,7 +219,6 @@ namespace Tetris
             {
                 currentBlock.x--;
             }
-            trapBlock();
         }
 
         /// <summary>
@@ -231,27 +230,6 @@ namespace Tetris
             {
                 currentBlock.x++;
             }
-            trapBlock();
-        }
-
-        /// <summary>
-        /// Traps the block within the bounds of the arena
-        /// </summary>
-        private void trapBlock()
-        {
-            // find where the block's bounds are
-            int leftest = currentBlock.leftestColumnWithSquareIn();
-            int rightest = currentBlock.rightestColumnWithSquareIn();
-            Coordinate leftestCoord = new Coordinate(leftest, 0);
-            leftestCoord = currentBlock.toBoardCoordinates(leftestCoord);
-            Coordinate rightestCoord = new Coordinate(rightest, 0);
-            rightestCoord = currentBlock.toBoardCoordinates(rightestCoord);
-
-            // trap it
-            if (leftestCoord.x < 0)
-                currentBlock.x++;
-            if (rightestCoord.x >= numberOfColumns)
-                currentBlock.x--;
         }
 
         #endregion blockMovement
