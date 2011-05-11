@@ -192,9 +192,10 @@ namespace Tetris
         /// </summary>
         public void rotateBlock()
         {
-            Block rotated = currentBlock.Clone();
-            rotated.rotateClockwise();
-            if (canBeHere(rotated))
+            Block whenRotated = currentBlock.Clone();
+            whenRotated.rotateClockwise();
+
+            if (canBeHere(whenRotated))
                 currentBlock.rotateClockwise();
         }
 
@@ -358,10 +359,10 @@ namespace Tetris
             Boolean canDrop = true;
 
             
-            Block dropped = currentBlock.Clone();
-            dropped.y++;
+            Block whenDropped = currentBlock.Clone();
+            whenDropped.y++;
 
-            if (!canBeHere(dropped))
+            if (!canBeHere(whenDropped))
                 canDrop = false;
             
 
@@ -428,12 +429,13 @@ namespace Tetris
         {
             Boolean obstruction = false;
 
-            Block moved = currentBlock.Clone();
+            Block whenMoved = currentBlock.Clone();
             if (toRight)
-                moved.x++;
+                whenMoved.x++;
             else
-                moved.x--;
-            if (!canBeHere(moved))
+                whenMoved.x--;
+
+            if (!canBeHere(whenMoved))
                 obstruction = true;
 
             // loop through each of the squares within the current block
