@@ -192,10 +192,7 @@ namespace Tetris
         /// </summary>
         public void rotateBlock()
         {
-            Block whenRotated = currentBlock.Clone();
-            whenRotated.rotateClockwise();
-
-            if (canBeHere(whenRotated))
+            if (canRotate())
                 currentBlock.rotateClockwise();
         }
 
@@ -205,9 +202,7 @@ namespace Tetris
         public void lowerBlock()
         {
             if (canDropFurther())
-            {
                 currentBlock.y++;
-            }
         }
 
         /// <summary>
@@ -216,9 +211,7 @@ namespace Tetris
         public void moveBlockLeft()
         {
             if (!hasBlockToSide(false))
-            {
                 currentBlock.x--;
-            }
         }
 
         /// <summary>
@@ -227,9 +220,7 @@ namespace Tetris
         public void moveBlockRight()
         {
             if (!hasBlockToSide(true))
-            {
                 currentBlock.x++;
-            }
         }
 
         #endregion blockMovement
@@ -246,7 +237,7 @@ namespace Tetris
             Boolean hasSquare = false;
 
             if (coord.x < numberOfColumns && coord.x >= 0 &&
-                coord.y < numberOfRowsTotal && coord.y >= 0 &&
+                    coord.y < numberOfRowsTotal && coord.y >= 0 &&
                         board[coord.x, coord.y] != boardColor)
             {
                 hasSquare = true;
@@ -293,6 +284,23 @@ namespace Tetris
         #region Block
 
         /// <summary>
+        /// Checks to see whether the block is able to rotate clockwise
+        /// </summary>
+        /// <returns>Indicates whether the block is able to rotate clockwise</returns>
+        private Boolean canRotate()
+        {
+            Boolean canRotate = true;
+
+            Block whenRotated = currentBlock.Clone();
+            whenRotated.rotateClockwise();
+
+            if (!canBeHere(whenRotated))
+                canRotate = false;
+
+            return canRotate;
+        }
+
+        /// <summary>
         /// Checks to see whether the block can drop any futher
         /// </summary>
         /// <returns>Indicates whether the current block can drop any further</returns>
@@ -300,7 +308,6 @@ namespace Tetris
         {
             Boolean canDrop = true;
 
-            
             Block whenDropped = currentBlock.Clone();
             whenDropped.y++;
 

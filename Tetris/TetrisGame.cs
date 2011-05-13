@@ -83,6 +83,7 @@ namespace Tetris
                     square.Parent = gameWindow;
                     square.Top = row * squareDimensions;
                     square.Left = col * squareDimensions;
+
                     string key = row.ToString() + col.ToString();
                     squares.Add(key, square);
                 }
