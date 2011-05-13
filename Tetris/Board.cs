@@ -320,6 +320,7 @@ namespace Tetris
         /// <summary>
         /// Checks to see whether there's something in the way to one side of the block
         /// </summary>
+        /// <param name="toRight">Represents the direction to check in. true = Right, false = Left</param>
         /// <returns>Indicates whether the current block would be free to move to the specified side</returns>
         private Boolean canMoveToSide(Boolean toRight)
         {
