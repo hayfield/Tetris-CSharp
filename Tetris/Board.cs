@@ -210,7 +210,7 @@ namespace Tetris
         /// </summary>
         public void moveBlockLeft()
         {
-            if (!hasBlockToSide(false))
+            if (canMoveToSide(false))
                 currentBlock.x--;
         }
 
@@ -219,7 +219,7 @@ namespace Tetris
         /// </summary>
         public void moveBlockRight()
         {
-            if (!hasBlockToSide(true))
+            if (canMoveToSide(true))
                 currentBlock.x++;
         }
 
@@ -321,9 +321,9 @@ namespace Tetris
         /// Checks to see whether there's something in the way to one side of the block
         /// </summary>
         /// <returns>Indicates whether the current block would be free to move to the specified side</returns>
-        private Boolean hasBlockToSide(Boolean toRight)
+        private Boolean canMoveToSide(Boolean toRight)
         {
-            Boolean obstruction = false;
+            Boolean canMove = true;
 
             Block whenMoved = currentBlock.Clone();
             if (toRight)
@@ -332,9 +332,9 @@ namespace Tetris
                 whenMoved.x--;
 
             if (!canBeHere(whenMoved))
-                obstruction = true;
+                canMove = false;
 
-            return obstruction;
+            return canMove;
         }
 
         #endregion Block

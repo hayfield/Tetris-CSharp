@@ -68,6 +68,7 @@ namespace Tetris
         {
             coord.x += x;
             coord.y += y;
+
             return coord;
         }
 
@@ -78,6 +79,7 @@ namespace Tetris
         {
             // would be quicker to use matrices, but thinking is hard ;P
             Boolean[,] temp = new Boolean[4, 4];
+
             temp[0,0] = squares[0,3];
             temp[1,0] = squares[0,2];
             temp[2,0] = squares[0,1];
