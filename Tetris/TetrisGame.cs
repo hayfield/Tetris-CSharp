@@ -53,11 +53,6 @@ namespace Tetris
             createSquares();
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// Resets the game
         /// </summary>
