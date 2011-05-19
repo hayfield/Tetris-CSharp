@@ -12,12 +12,15 @@ namespace Tetris
     class Board
     {
         /// <summary>
-        /// Constructur to initialise the array to be showing PeachPuff color squares
+        /// The game board for a game of Tetris
         /// </summary>
+        /// <param name="noOfRows">The number of visible rows on the board</param>
+        /// <param name="noOfColumns">The number of columns on the board</param>
         public Board(int noOfRows, int noOfColumns)
         {
             board = new int[noOfColumns, noOfRows + hiddenRows];
 
+            // initialise the board by setting each cell as the default color
             for (int col = 0; col < noOfColumns; col++)
             {
                 for (int row = 0; row < noOfRows + hiddenRows; row++)
@@ -29,7 +32,6 @@ namespace Tetris
             numberOfColumns = noOfColumns;
             numberOfRows = noOfRows;
             numberOfRowsTotal = noOfRows + hiddenRows;
-            rowsDestroyed = 0;
 
             tick(); // stop a crash when holding a key down when starting a game
         }
@@ -44,7 +46,7 @@ namespace Tetris
         /// <summary>
         /// The number of rows that have been destroyed
         /// </summary>
-        public int rowsDestroyed;
+        public int rowsDestroyed = 0;
 
         /// <summary>
         /// The number of rows that are hidden above the top of the grid

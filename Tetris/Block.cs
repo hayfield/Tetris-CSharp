@@ -12,8 +12,9 @@ namespace Tetris
     class Block
     {
         /// <summary>
-        /// Constructor
+        /// A block (tetromino) that falls down the grid
         /// </summary>
+        /// <param name="positionSpawner">The position spawner to determine which block it should be</param>
         public Block(BlockPositionSpawner positionSpawner)
         {
             // decide which block it is

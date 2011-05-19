@@ -12,6 +12,15 @@ namespace Tetris
 {
     public partial class TetrisGame : Form
     {
+        /// <summary>
+        /// A game of Tetris implemented as a WinForms application
+        /// </summary>
+        public TetrisGame()
+        {
+            InitializeComponent();
+            createSquares();
+        }
+
         #region variables
 
         /// <summary>
@@ -50,12 +59,6 @@ namespace Tetris
         Input input = new Input();
 
         #endregion variables
-
-        public TetrisGame()
-        {
-            InitializeComponent();
-            createSquares();
-        }
 
         #region game
 

@@ -6,14 +6,11 @@ using System.Drawing;
 
 namespace Tetris
 {
-    /// <summary>
-    /// Something to track which blocks have been spawned recently, creating a bucket which
-    /// prevents long strings of the same block.
-    /// </summary>
     class BlockPositionSpawner
     {
         /// <summary>
-        /// Constructor
+        /// A method of tracking which blocks have been spawned recently, creating a bucket which
+        /// prevents long strings of the same block.
         /// </summary>
         public BlockPositionSpawner()
         {
@@ -41,7 +38,7 @@ namespace Tetris
         /// <summary>
         /// A counter to determine which block should be chosen next
         /// </summary>
-        private int counter = 0;
+        private int nextBlock = 0;
 
         #endregion variables
 
@@ -51,14 +48,14 @@ namespace Tetris
         /// <returns>The position block to play with</returns>
         public BlockStartPosition Next()
         {
-            BlockStartPosition blockToReturn = currentBucket[counter];
+            BlockStartPosition blockToReturn = currentBucket[nextBlock];
 
-            currentBucket[counter] = nextBucket[counter];
-            counter++;
+            currentBucket[nextBlock] = nextBucket[nextBlock];
+            nextBlock++;
 
-            if (counter >= currentBucket.Length)
+            if (nextBlock >= currentBucket.Length)
             {
-                counter = 0;
+                nextBlock = 0;
                 setPossiblePositions(ref nextBucket);
             }
 

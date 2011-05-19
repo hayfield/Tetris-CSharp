@@ -5,13 +5,10 @@ using System.Text;
 
 namespace Tetris
 {
-    /// <summary>
-    /// A spawner which will create the next blocks to be played
-    /// </summary>
     class BlockSpawner
     {
         /// <summary>
-        /// Constructor
+        /// A spawner which will create the next blocks to be played
         /// </summary>
         public BlockSpawner()
         {

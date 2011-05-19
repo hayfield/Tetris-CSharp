@@ -11,7 +11,7 @@ namespace Tetris
     class Coordinate
     {
         /// <summary>
-        /// Create a new coordinate
+        /// Create a new coordinate in the form (x, y)
         /// </summary>
         /// <param name="x">The x-coordinate</param>
         /// <param name="y">The y-coordinate</param>

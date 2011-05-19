@@ -5,13 +5,10 @@ using System.Text;
 
 namespace Tetris
 {
-    /// <summary>
-    /// Specifies the keyboard keys that are pressed.
-    /// </summary>
     class Input
     {
         /// <summary>
-        /// Constructor
+        /// A central method of tracking keyboard input
         /// </summary>
         public Input()
         {
