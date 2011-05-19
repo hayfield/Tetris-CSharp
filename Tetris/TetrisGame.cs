@@ -186,7 +186,47 @@ namespace Tetris
 
         private void TetrisGame_KeyDown(object sender, KeyEventArgs e)
         {
-            textBox2.Text = e.KeyValue.ToString();
+            textBox2.Text = e.KeyValue.ToString() + " " + e.KeyCode.ToString();
+            char key = e.KeyCode.ToString().ToLower()[0];
+
+            if (key == input.downKey)
+            {
+                input.downKeyPressed = true;
+            }
+            else if (key == input.leftKey)
+            {
+                input.leftKeyPressed = true;
+            }
+            else if (key == input.rightKey)
+            {
+                input.rightKeyPressed = true;
+            }
+            else if (key == input.rotateKey)
+            {
+                input.rotateKeyPressed = true;
+            }
+        }
+
+        private void TetrisGame_KeyUp(object sender, KeyEventArgs e)
+        {
+            char key = e.KeyCode.ToString().ToLower()[0];
+
+            if (key == input.downKey)
+            {
+                input.downKeyPressed = false;
+            }
+            else if (key == input.leftKey)
+            {
+                input.leftKeyPressed = false;
+            }
+            else if (key == input.rightKey)
+            {
+                input.rightKeyPressed = false;
+            }
+            else if (key == input.rotateKey)
+            {
+                input.rotateKeyPressed = false;
+            }
         }
 
     }
