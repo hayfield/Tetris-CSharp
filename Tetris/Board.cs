@@ -22,13 +22,10 @@ namespace Tetris
 
             // initialise the board by setting each cell as the default color
             for (int col = 0; col < noOfColumns; col++)
-            {
                 for (int row = 0; row < noOfRows + hiddenRows; row++)
-                {
                     board[col, row] = boardColor;
-                }
-            }
 
+            // initialise variables based on the parameters
             numberOfColumns = noOfColumns;
             numberOfRows = noOfRows;
             numberOfRowsTotal = noOfRows + hiddenRows;
@@ -170,10 +167,8 @@ namespace Tetris
             Boolean full = true;
 
             for (int col = 0; col < numberOfColumns; col++)
-            {
                 if (board[col, rowToCheck] == boardColor)
                     full = false;
-            }
 
             return full;
         }

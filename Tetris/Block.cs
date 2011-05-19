@@ -134,12 +134,8 @@ namespace Tetris
             int lowestRow = lowestRowWithSquareIn();
 
             for (int col = 0; col < squares.GetLength(0); col++)
-            {
                 if (squares[col, lowestRow])
-                {
                     lowestColumns.Add(col);
-                }
-            }
 
             return lowestColumns;
         }
@@ -153,15 +149,9 @@ namespace Tetris
             int lowestRow = 0;
 
             for (int col = 0; col < squares.GetLength(0); col++)
-            {
                 for (int row = 0; row < squares.GetLength(1); row++)
-                {
                     if (squares[row, col])
-                    {
                         lowestRow = row;
-                    }
-                }
-            }
 
             return lowestRow;
         }
@@ -175,15 +165,9 @@ namespace Tetris
             int leftestCol = 0;
 
             for (int col = squares.GetLength(0) - 1; col >=0 ; col--)
-            {
                 for (int row = 0; row < squares.GetLength(1); row++)
-                {
                     if (squares[row, col])
-                    {
                         leftestCol = col;
-                    }
-                }
-            }
 
             return leftestCol;
         }
@@ -197,15 +181,9 @@ namespace Tetris
             int rightestCol = 0;
 
             for (int col = 0; col < squares.GetLength(0); col++)
-            {
                 for (int row = 0; row < squares.GetLength(1); row++)
-                {
                     if (squares[row, col])
-                    {
                         rightestCol = col;
-                    }
-                }
-            }
 
             return rightestCol;
         }
