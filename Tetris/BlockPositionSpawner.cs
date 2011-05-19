@@ -9,12 +9,12 @@ namespace Tetris
     /// <summary>
     /// The possible positions that a block may start in
     /// </summary>
-    class BlockSpawner
+    class BlockPositionSpawner
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public BlockSpawner()
+        public BlockPositionSpawner()
         {
             counter = 0;
             setPossiblePositions(ref currentBucket);

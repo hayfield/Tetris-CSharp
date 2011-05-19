@@ -14,7 +14,7 @@ namespace Tetris
         /// <summary>
         /// Constructor
         /// </summary>
-        public Block(BlockSpawner spawner)
+        public Block(BlockPositionSpawner spawner)
         {
             // decide which block it is
             Random random = new Random();

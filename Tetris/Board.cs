@@ -39,7 +39,7 @@ namespace Tetris
         /// <summary>
         /// A block spawner to specify the blocks to spawn
         /// </summary>
-        BlockSpawner blockSpawner = new BlockSpawner();
+        BlockPositionSpawner blockSpawner = new BlockPositionSpawner();
 
         /// <summary>
         /// The number of rows that have been destroyed

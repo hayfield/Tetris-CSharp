@@ -61,7 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlockSpawner.cs" />
+    <Compile Include="BlockPositionSpawner.cs" />
     <Compile Include="BlockStartPosition.cs" />
     <Compile Include="Block.cs" />
     <Compile Include="Board.cs" />
