@@ -184,49 +184,27 @@ namespace Tetris
             }
         }
 
+        /// <summary>
+        /// When a key is pressed, let the input controller process the action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TetrisGame_KeyDown(object sender, KeyEventArgs e)
         {
             textBox2.Text = e.KeyValue.ToString() + " " + e.KeyCode.ToString();
             char key = e.KeyCode.ToString().ToLower()[0];
-
-            if (key == input.downKey)
-            {
-                input.downKeyPressed = true;
-            }
-            else if (key == input.leftKey)
-            {
-                input.leftKeyPressed = true;
-            }
-            else if (key == input.rightKey)
-            {
-                input.rightKeyPressed = true;
-            }
-            else if (key == input.rotateKey)
-            {
-                input.rotateKeyPressed = true;
-            }
+            input.processKey(key, true);
         }
 
+        /// <summary>
+        /// When a key is raised, let the input controller process the action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TetrisGame_KeyUp(object sender, KeyEventArgs e)
         {
             char key = e.KeyCode.ToString().ToLower()[0];
-
-            if (key == input.downKey)
-            {
-                input.downKeyPressed = false;
-            }
-            else if (key == input.leftKey)
-            {
-                input.leftKeyPressed = false;
-            }
-            else if (key == input.rightKey)
-            {
-                input.rightKeyPressed = false;
-            }
-            else if (key == input.rotateKey)
-            {
-                input.rotateKeyPressed = false;
-            }
+            input.processKey(key, false);
         }
 
     }

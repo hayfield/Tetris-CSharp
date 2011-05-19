@@ -22,6 +22,31 @@ namespace Tetris
         }
 
         /// <summary>
+        /// Process a specified key that has been pressed and set the relevant boolean value
+        /// </summary>
+        /// <param name="key">A character representing the key that has been pressed</param>
+        /// <param name="pressed">Whether the key is pressed or has been lifted</param>
+        public void processKey(char key, Boolean pressed)
+        {
+            if (key == downKey)
+            {
+                downKeyPressed = pressed;
+            }
+            else if (key == leftKey)
+            {
+                leftKeyPressed = pressed;
+            }
+            else if (key == rightKey)
+            {
+                rightKeyPressed = pressed;
+            }
+            else if (key == rotateKey)
+            {
+                rotateKeyPressed = pressed;
+            }
+        }
+
+        /// <summary>
         /// The key to move the current block left
         /// </summary>
         public readonly char leftKey = 'a';
