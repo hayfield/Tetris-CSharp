@@ -12,6 +12,8 @@ namespace Tetris
 {
     public partial class TetrisGame : Form
     {
+        #region variables
+
         /// <summary>
         /// Is a game currently being played?
         /// </summary>
@@ -47,11 +49,15 @@ namespace Tetris
         /// </summary>
         Input input = new Input();
 
+        #endregion variables
+
         public TetrisGame()
         {
             InitializeComponent();
             createSquares();
         }
+
+        #region game
 
         /// <summary>
         /// Resets the game
@@ -62,6 +68,25 @@ namespace Tetris
             tickTimer.Enabled = true;
             playing = true;
         }
+
+        /// <summary>
+        /// Update the game at the interval that is specified
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tickTimer_Tick(object sender, EventArgs e)
+        {
+            if (playing)
+            {
+                board.tick();
+                updateBoard();
+                rowsCleared.Text = board.rowsDestroyed.ToString();
+            }
+        }
+
+        #endregion game
+
+        #region GUI
 
         /// <summary>
         /// Creates the squares which make up the visible portion of the board
@@ -82,21 +107,6 @@ namespace Tetris
                     string key = row.ToString() + col.ToString();
                     squares.Add(key, square);
                 }
-            }
-        }
-
-        /// <summary>
-        /// Update the game at the interval that is specified
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tickTimer_Tick(object sender, EventArgs e)
-        {
-            if (playing)
-            {
-                board.tick();
-                updateBoard();
-                rowsCleared.Text = board.rowsDestroyed.ToString();
             }
         }
 
@@ -134,6 +144,10 @@ namespace Tetris
                 }
             }
         }
+
+        #endregion GUI
+
+        #region input
 
         /// <summary>
         /// Create a new game when the 'New Game' button is clicked
@@ -197,6 +211,8 @@ namespace Tetris
             char key = e.KeyCode.ToString().ToLower()[0];
             input.processKey(key, false);
         }
+
+        #endregion input
 
     }
 }

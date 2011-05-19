@@ -98,7 +98,7 @@ namespace Tetris
             manageFullRows();
         }
 
-        #region Board
+        #region board
 
         /// <summary>
         /// Creates a new block to play with
@@ -295,9 +295,9 @@ namespace Tetris
 
         #endregion blockPositionChecks
 
-        #endregion Board
+        #endregion board
 
-        #region Block
+        #region block
 
         /// <summary>
         /// Checks to see whether the block is able to rotate clockwise
@@ -354,6 +354,6 @@ namespace Tetris
             return canMove;
         }
 
-        #endregion Block
+        #endregion block
     }
 }

@@ -46,6 +46,10 @@ namespace Tetris
             }
         }
 
+        #region variables
+
+        #region keys
+
         /// <summary>
         /// The key to move the current block left
         /// </summary>
@@ -66,6 +70,10 @@ namespace Tetris
         /// </summary>
         public readonly char downKey = 's';
 
+        #endregion keys
+
+        #region keyStatuses
+
         /// <summary>
         /// Indicates whether the left key is pressed or not
         /// </summary>
@@ -85,5 +93,9 @@ namespace Tetris
         /// Indicates whether the down key is pressed or not
         /// </summary>
         public Boolean downKeyPressed { get; set; }
+
+        #endregion keyStatuses
+
+        #endregion variables
     }
 }

@@ -27,6 +27,8 @@ namespace Tetris
             y = 0;
         }
 
+        #region variables
+
         /// <summary>
         /// The color of the block
         /// </summary>
@@ -50,6 +52,10 @@ namespace Tetris
         /// </summary>
         public int y { get; set; }
 
+        #endregion variables
+
+        #region utility
+
         /// <summary>
         /// Clones the current block
         /// </summary>
@@ -70,6 +76,10 @@ namespace Tetris
 
             return coord;
         }
+
+        #endregion utility
+
+        #region movement
 
         /// <summary>
         /// Rotates the block clockwise
@@ -108,6 +118,10 @@ namespace Tetris
             rotateClockwise();
             rotateClockwise();
         }
+
+        #endregion movement
+
+        #region positionChecks
 
         /// <summary>
         /// Finds the columns with the lowest squares in
@@ -195,6 +209,7 @@ namespace Tetris
             return rightestCol;
         }
 
+        #endregion positionChecks
 
     }
 }

@@ -21,6 +21,8 @@ namespace Tetris
             setPossiblePositions(ref nextBucket);
         }
 
+        #region variables
+
         /// <summary>
         /// The current bucket of blocks that should be taken from when selecting a new one
         /// </summary>
@@ -40,6 +42,8 @@ namespace Tetris
         /// A counter to determine which block should be chosen next
         /// </summary>
         private int counter = 0;
+
+        #endregion variables
 
         /// <summary>
         /// Returns the position of the next block to play with

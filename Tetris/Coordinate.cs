@@ -22,7 +22,7 @@ namespace Tetris
         }
 
         /// <summary>
-        /// The x=coordinate
+        /// The x-coordinate
         /// </summary>
         public int x { get; set; }
 
