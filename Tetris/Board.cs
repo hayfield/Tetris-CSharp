@@ -17,6 +17,7 @@ namespace Tetris
         public Board(int noOfRows, int noOfColumns)
         {
             board = new int[noOfColumns, noOfRows + hiddenRows];
+
             for (int col = 0; col < noOfColumns; col++)
             {
                 for (int row = 0; row < noOfRows + hiddenRows; row++)
@@ -24,13 +25,26 @@ namespace Tetris
                     board[col, row] = boardColor;
                 }
             }
+
             numberOfColumns = noOfColumns;
             numberOfRows = noOfRows;
             numberOfRowsTotal = noOfRows + hiddenRows;
+            rowsDestroyed = 0;
+
             tick(); // stop a crash when holding a key down when starting a game
         }
 
         #region variables
+
+        /// <summary>
+        /// The number of rows that have been destroyed
+        /// </summary>
+        public int rowsDestroyed;
+
+        /// <summary>
+        /// The number of rows that are hidden above the top of the grid
+        /// </summary>
+        public readonly int hiddenRows = 2;
 
         /// <summary>
         /// The default color of the board when there are no blocks there
@@ -47,11 +61,6 @@ namespace Tetris
         /// The block that is currently being played
         /// </summary>
         public Block currentBlock;
-
-        /// <summary>
-        /// The number of rows that are hidden above the top of the grid
-        /// </summary>
-        public readonly int hiddenRows = 2;
 
         /// <summary>
         /// The number of visible columns on the board
@@ -181,6 +190,8 @@ namespace Tetris
                     board[col, row] = board[col, row - 1];
                 }
             }
+
+            rowsDestroyed++;
         }
 
         #endregion gameEvents

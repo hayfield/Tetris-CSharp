@@ -101,11 +101,7 @@ namespace Tetris
             {
                 board.tick();
                 updateBoard();
-                rowsClearedLabel.Text = "playing " + DateTime.Now.Second.ToString();
-            }
-            else
-            {
-                rowsClearedLabel.Text = "rows: " + DateTime.Now.Second.ToString();
+                rowsCleared.Text = board.rowsDestroyed.ToString();
             }
         }
 
