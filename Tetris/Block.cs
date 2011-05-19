@@ -14,12 +14,11 @@ namespace Tetris
         /// <summary>
         /// Constructor
         /// </summary>
-        public Block(BlockPositionSpawner spawner)
+        public Block(BlockPositionSpawner positionSpawner)
         {
             // decide which block it is
             Random random = new Random();
-            BlockStartPosition startPos = new BlockStartPosition();
-            startPos = spawner.next();//new PossibleBlockStartPositions().currentBucket[random.Next(7)];
+            BlockStartPosition startPos = positionSpawner.next();
             squares = startPos.position;
             color = startPos.color;
 

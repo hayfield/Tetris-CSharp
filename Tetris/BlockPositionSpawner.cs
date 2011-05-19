@@ -7,7 +7,8 @@ using System.Drawing;
 namespace Tetris
 {
     /// <summary>
-    /// The possible positions that a block may start in
+    /// Something to track which blocks have been spawned recently, creating a bucket which
+    /// prevents long strings of the same block.
     /// </summary>
     class BlockPositionSpawner
     {
@@ -37,9 +38,9 @@ namespace Tetris
         private int counter;
 
         /// <summary>
-        /// Returns the next block to play with
+        /// Returns the position of the next block to play with
         /// </summary>
-        /// <returns>The next block to play with</returns>
+        /// <returns>The position block to play with</returns>
         public BlockStartPosition next()
         {
             BlockStartPosition blockToReturn = currentBucket[counter];

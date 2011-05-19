@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlockPositionSpawner.cs" />
+    <Compile Include="BlockSpawner.cs" />
     <Compile Include="BlockStartPosition.cs" />
     <Compile Include="Block.cs" />
     <Compile Include="Board.cs" />
