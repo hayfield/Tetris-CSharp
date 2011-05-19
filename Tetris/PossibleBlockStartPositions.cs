@@ -16,75 +16,81 @@ namespace Tetris
         /// </summary>
         public PossibleBlockStartPositions()
         {
-            setPossiblePositions();
+            setPossiblePositions(currentBucket);
+            setPossiblePositions(nextBucket);
         }
 
         /// <summary>
-        /// The possible positions that a block can start in
+        /// The current bucket of blocks that should be taken from when selecting a new one
         /// </summary>
-        public BlockStartPosition[] positions = new BlockStartPosition[7];
+        public BlockStartPosition[] currentBucket = new BlockStartPosition[7];
+
+        /// <summary>
+        /// The next bucket of blocks that should be taken from when selecting a new one
+        /// </summary>
+        public BlockStartPosition[] nextBucket = new BlockStartPosition[7];
 
         /// <summary>
         /// Specify the possible positions that a block can start in
         /// </summary>
-        private void setPossiblePositions()
+        private void setPossiblePositions(BlockStartPosition[] bucket)
         {
             // straight across in a line
-            positions[0] = new BlockStartPosition();
-            positions[0].position = new Boolean[,]
+            bucket[0] = new BlockStartPosition();
+            bucket[0].position = new Boolean[,]
                                         {{false, false, false, false},
                                         {false, false, false, false},
                                         {true, true, true, true},
                                         {false, false, false, false}};
-            positions[0].color = Color.Cyan;
+            bucket[0].color = Color.Cyan;
             // L with a spike on the left
-            positions[1] = new BlockStartPosition();
-            positions[1].position = new Boolean[,]
+            bucket[1] = new BlockStartPosition();
+            bucket[1].position = new Boolean[,]
                                         {{false, false, false, false},
                                         {false, true, false, false},
                                         {false, true, true, true},
                                         {false, false, false, false}};
-            positions[1].color = Color.Blue;
+            bucket[1].color = Color.Blue;
             // L with a spike on the right
-            positions[2] = new BlockStartPosition();
-            positions[2].position = new Boolean[,]
+            bucket[2] = new BlockStartPosition();
+            bucket[2].position = new Boolean[,]
                                         {{false, false, false, false},
                                         {false, false, false, true},
                                         {false, true, true, true},
                                         {false, false, false, false}};
-            positions[2].color = Color.Orange;
+            bucket[2].color = Color.Orange;
             // square
-            positions[3] = new BlockStartPosition();
-            positions[3].position = new Boolean[,]
+            bucket[3] = new BlockStartPosition();
+            bucket[3].position = new Boolean[,]
                                         {{false, false, false, false},
                                         {false, true, true, false},
                                         {false, true, true, false},
                                         {false, false, false, false}};
-            positions[3].color = Color.Yellow;
+            bucket[3].color = Color.Yellow;
             // zig-zag up to the right
-            positions[4] = new BlockStartPosition();
-            positions[4].position = new Boolean[,]
+            bucket[4] = new BlockStartPosition();
+            bucket[4].position = new Boolean[,]
                                         {{false, false, false, false},
                                         {false, false, true, true},
                                         {false, true, true, false},
                                         {false, false, false, false}};
-            positions[4].color = Color.Red;
+            bucket[4].color = Color.Red;
             // zig-zag up to the left
-            positions[5] = new BlockStartPosition();
-            positions[5].position = new Boolean[,]
+            bucket[5] = new BlockStartPosition();
+            bucket[5].position = new Boolean[,]
                                         {{false, false, false, false},
                                         {true, true, false, false},
                                         {false, true, true, false},
                                         {false, false, false, false}};
-            positions[5].color = Color.Green;
+            bucket[5].color = Color.Green;
             // T shape
-            positions[6] = new BlockStartPosition();
-            positions[6].position = new Boolean[,]
+            bucket[6] = new BlockStartPosition();
+            bucket[6].position = new Boolean[,]
                                         {{false, false, false, false},
                                         {false, false, true, false},
                                         {false, true, true, true},
                                         {false, false, false, false}};
-            positions[6].color = Color.Purple;
+            bucket[6].color = Color.Purple;
         }
     }
 }

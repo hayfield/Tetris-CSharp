@@ -19,7 +19,7 @@ namespace Tetris
             // decide which block it is
             Random random = new Random();
             BlockStartPosition startPos = new BlockStartPosition();
-            startPos = new PossibleBlockStartPositions().positions[random.Next(7)];
+            startPos = new PossibleBlockStartPositions().currentBucket[random.Next(7)];
             squares = startPos.position;
             color = startPos.color;
 
