@@ -164,19 +164,19 @@ namespace Tetris
             textBox1.Text = e.KeyChar.ToString();
             if (playing)
             {
-                if (e.KeyChar == input.downKey)
+                if (input.downKeyPressed)
                 {
                     board.lowerBlock();
                 }
-                else if (e.KeyChar == input.leftKey)
+                if (input.leftKeyPressed)
                 {
                     board.moveBlockLeft();
                 }
-                else if (e.KeyChar == input.rightKey)
+                if (input.rightKeyPressed)
                 {
                     board.moveBlockRight();
                 }
-                else if (e.KeyChar == input.rotateKey)
+                if (input.rotateKeyPressed)
                 {
                     board.rotateBlock();
                 }
