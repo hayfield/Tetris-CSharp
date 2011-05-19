@@ -17,7 +17,6 @@ namespace Tetris
         /// </summary>
         public BlockPositionSpawner()
         {
-            counter = 0;
             setPossiblePositions(ref currentBucket);
             setPossiblePositions(ref nextBucket);
         }
@@ -33,9 +32,14 @@ namespace Tetris
         private BlockStartPosition[] nextBucket = new BlockStartPosition[7];
 
         /// <summary>
+        /// A random number generator
+        /// </summary>
+        private Random rand = new Random();
+
+        /// <summary>
         /// A counter to determine which block should be chosen next
         /// </summary>
-        private int counter;
+        private int counter = 0;
 
         /// <summary>
         /// Returns the position of the next block to play with
@@ -131,7 +135,6 @@ namespace Tetris
         /// <param name="bucket">The bucket that should be shuffled</param>
         private void shuffle(ref BlockStartPosition[] bucket)
         {
-            Random rand = new Random();
             BlockStartPosition temp;
             for (int i = bucket.Length - 1; i > 0; i--)
             {
