@@ -18,7 +18,7 @@ namespace Tetris
         {
             // decide which block it is
             Random random = new Random();
-            BlockStartPosition startPos = positionSpawner.next();
+            BlockStartPosition startPos = positionSpawner.Next();
             squares = startPos.position;
             color = startPos.color;
 

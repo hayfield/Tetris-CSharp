@@ -27,7 +27,7 @@ namespace Tetris
         /// Returns the next block to play with
         /// </summary>
         /// <returns>The next block to play with</returns>
-        public Block next()
+        public Block Next()
         {
             return new Block(positionSpawner);
         }

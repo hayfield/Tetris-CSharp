@@ -45,7 +45,7 @@ namespace Tetris
         /// Returns the position of the next block to play with
         /// </summary>
         /// <returns>The position block to play with</returns>
-        public BlockStartPosition next()
+        public BlockStartPosition Next()
         {
             BlockStartPosition blockToReturn = currentBucket[counter];
 

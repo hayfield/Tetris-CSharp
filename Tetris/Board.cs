@@ -109,7 +109,7 @@ namespace Tetris
             lockBlock();
 
             // spawn a new block
-            currentBlock = blockSpawner.next();
+            currentBlock = blockSpawner.Next();
         }
 
         /// <summary>
