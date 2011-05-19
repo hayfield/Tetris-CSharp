@@ -16,8 +16,9 @@ namespace Tetris
         /// </summary>
         public BlockSpawner()
         {
-            setPossiblePositions(currentBucket);
-            setPossiblePositions(nextBucket);
+            counter = 0;
+            setPossiblePositions(ref currentBucket);
+            setPossiblePositions(ref nextBucket);
         }
 
         /// <summary>
@@ -31,9 +32,34 @@ namespace Tetris
         private BlockStartPosition[] nextBucket = new BlockStartPosition[7];
 
         /// <summary>
+        /// A counter to determine which block should be chosen next
+        /// </summary>
+        private int counter;
+
+        /// <summary>
+        /// Returns the next block to play with
+        /// </summary>
+        /// <returns>The next block to play with</returns>
+        public BlockStartPosition next()
+        {
+            BlockStartPosition blockToReturn = currentBucket[counter];
+
+            currentBucket[counter] = nextBucket[counter];
+            counter++;
+
+            if (counter >= currentBucket.Length)
+            {
+                counter = 0;
+                setPossiblePositions(ref nextBucket);
+            }
+
+            return blockToReturn;
+        }
+
+        /// <summary>
         /// Specify the possible positions that a block can start in
         /// </summary>
-        private void setPossiblePositions(BlockStartPosition[] bucket)
+        private void setPossiblePositions(ref BlockStartPosition[] bucket)
         {
             // straight across in a line
             bucket[0] = new BlockStartPosition();
@@ -91,6 +117,28 @@ namespace Tetris
                                         {false, true, true, true},
                                         {false, false, false, false}};
             bucket[6].color = Color.Purple;
+
+            shuffle(ref bucket);
+        }
+
+        /// <summary>
+        /// Shuffle a bucket to randomise the order that blocks spawn in
+        /// Uses a Fisher–Yates shuffle
+        /// http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+        /// http://www.codinghorror.com/blog/2007/12/the-danger-of-naivete.html
+        /// </summary>
+        /// <param name="bucket">The bucket that should be shuffled</param>
+        private void shuffle(ref BlockStartPosition[] bucket)
+        {
+            Random rand = new Random();
+            BlockStartPosition temp;
+            for (int i = bucket.Length - 1; i > 0; i--)
+            {
+                int n = rand.Next(i + 1);
+                temp = bucket[i];
+                bucket[i] = bucket[n];
+                bucket[n] = temp;
+            }
         }
     }
 }

@@ -37,6 +37,11 @@ namespace Tetris
         #region variables
 
         /// <summary>
+        /// A block spawner to specify the blocks to spawn
+        /// </summary>
+        BlockSpawner blockSpawner = new BlockSpawner();
+
+        /// <summary>
         /// The number of rows that have been destroyed
         /// </summary>
         public int rowsDestroyed;
@@ -104,7 +109,7 @@ namespace Tetris
             lockBlock();
 
             // spawn a new block
-            currentBlock = new Block();
+            currentBlock = new Block(blockSpawner);
         }
 
         /// <summary>
