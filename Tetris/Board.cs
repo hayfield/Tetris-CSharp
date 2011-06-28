@@ -46,6 +46,11 @@ namespace Tetris
         public int rowsDestroyed = 0;
 
         /// <summary>
+        /// The score that has been obtained
+        /// </summary>
+        public int score = 0;
+
+        /// <summary>
         /// The number of rows that are hidden above the top of the grid
         /// </summary>
         public readonly int hiddenRows = 2;
@@ -142,8 +147,13 @@ namespace Tetris
         /// </summary>
         private void manageFullRows()
         {
+            int rowsDestroyedStart = rowsDestroyed;
+
             for (int row = hiddenRows; row < numberOfRowsTotal; row++)
                 manageFullRow(row);
+
+            // give bonus points for clearing multiple rows at a time
+            score += (rowsDestroyed - rowsDestroyedStart) * (rowsDestroyed - rowsDestroyedStart);
         }
 
         /// <summary>

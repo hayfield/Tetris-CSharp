@@ -84,6 +84,7 @@ namespace Tetris
                 board.tick();
                 updateBoard();
                 rowsCleared.Text = board.rowsDestroyed.ToString();
+                score.Text = board.score.ToString();
             }
         }
 
