@@ -87,6 +87,16 @@ namespace Tetris
         /// </summary>
         public void rotateClockwise()
         {
+            rotateAntiClockwise();
+            rotateAntiClockwise();
+            rotateAntiClockwise();
+        }
+
+        /// <summary>
+        /// Rotates the block anti-clockwise by rotating it clockwise three times
+        /// </summary>
+        public void rotateAntiClockwise()
+        {
             // would be quicker to use matrices, but thinking is hard ;P
             Boolean[,] temp = new Boolean[squares.GetLength(0), squares.GetLength(1)];
 
@@ -96,16 +106,6 @@ namespace Tetris
                     temp[squares.GetLength(1) - 1 - row, col] = squares[col, row];
 
             squares = temp;
-        }
-
-        /// <summary>
-        /// Rotates the block anti-clockwise by rotating it clockwise three times
-        /// </summary>
-        public void rotateAntiClockwise()
-        {
-            rotateClockwise();
-            rotateClockwise();
-            rotateClockwise();
         }
 
         #endregion movement
