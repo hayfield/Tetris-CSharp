@@ -17,6 +17,11 @@ namespace Tetris
         public static readonly String filetype = "blockset";
 
         /// <summary>
+        /// A character to indicate that he block is solid at that point
+        /// </summary>
+        public static readonly char solidIndicator = '#';
+
+        /// <summary>
         /// Check the directory that the program is running in for any blockset files
         /// </summary>
         /// <returns>A list of names of all the blocksets</returns>
@@ -94,7 +99,7 @@ namespace Tetris
                             if (row.Length != block[0].Length)
                                 blockStrings.Remove(block);
 
-                            if (row.Contains('#'))
+                            if (row.Contains(BlockLoader.solidIndicator))
                                 isSolid = true;
                         }
 

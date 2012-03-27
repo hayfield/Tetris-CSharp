@@ -109,7 +109,7 @@ namespace Tetris
                         char[] rowArr = block[row].ToCharArray();
                         for (var col = 0; col < block[row].Length; col++)
                         {
-                            bucket[count].position[row, col] = rowArr[col] == '#';
+                            bucket[count].position[row, col] = rowArr[col] == BlockLoader.solidIndicator;
                         }
                     }
                     // give it a random color. Pretty ^_^
