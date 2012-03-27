@@ -21,6 +21,21 @@ namespace Tetris
             setPossiblePositions(ref nextBucket);
         }
 
+        /// <summary>
+        /// Create a block position spawner where the block positions are loaded from a file
+        /// </summary>
+        /// <param name="name">The name of the file to load</param>
+        public BlockPositionSpawner(String name)
+        {
+            loadedPositions = BlockLoader.load(name);
+
+            if (loadedPositions != null)
+            {
+                currentBucket = new BlockStartPosition[loadedPositions.Count];
+                nextBucket = new BlockStartPosition[loadedPositions.Count];
+            }
+        }
+
         #region variables
 
         /// <summary>
@@ -42,6 +57,11 @@ namespace Tetris
         /// A counter to determine which block should be chosen next
         /// </summary>
         private int nextBlock = 0;
+
+        /// <summary>
+        /// Start positions that have been loaded from a file
+        /// </summary>
+        private List<String[]> loadedPositions = null;
 
         #endregion variables
 
