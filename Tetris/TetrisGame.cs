@@ -68,9 +68,14 @@ namespace Tetris
         /// </summary>
         private void resetGame()
         {
-            board = new Board((int)boardRowsSelect.Value, (int)boardColsSelect.Value, blocksetList.Text);
+            squareDimensions = (int)sqSizeSelect.Value;
+            numberOfRows = (int)boardRowsSelect.Value;
+            numberOfColumns = (int)boardColsSelect.Value;
+            board = new Board(numberOfRows, numberOfColumns, blocksetList.Text);
+            createSquares();
             tickTimer.Enabled = true;
             playing = true;
+            Console.WriteLine("reset");
         }
 
         /// <summary>
@@ -94,10 +99,24 @@ namespace Tetris
         #region GUI
 
         /// <summary>
+        /// Calculates a string to use as the key for the squares hash
+        /// </summary>
+        private String squaresKey(int row, int col)
+        {
+            return "R" + row.ToString() + "C" + col.ToString();
+        }
+
+        /// <summary>
         /// Creates the squares which make up the visible portion of the board
         /// </summary>
         private void createSquares()
         {
+            foreach (KeyValuePair<String,Square> val in squares)
+            {
+                val.Value.Dispose();
+            }
+            squares.Clear();
+
             for (int row = 0; row < numberOfRows; row++)
             {
                 for (int col = 0; col < numberOfColumns; col++)
@@ -109,8 +128,7 @@ namespace Tetris
                     square.Top = row * squareDimensions;
                     square.Left = col * squareDimensions;
 
-                    string key = row.ToString() + col.ToString();
-                    squares.Add(key, square);
+                    squares.Add(squaresKey(row, col), square);
                 }
             }
         }
@@ -126,7 +144,7 @@ namespace Tetris
             {
                 for (int col = 0; col < numberOfColumns; col++)
                 {
-                    squares.TryGetValue(row.ToString() + col.ToString(), out square);
+                    squares.TryGetValue(squaresKey(row, col), out square);
                     square.color = board.board[col, row + board.hiddenRows];
                 }
             }
@@ -142,8 +160,7 @@ namespace Tetris
                     if (block.squares[row, col] && coord.x >= 0 && coord.x < numberOfColumns
                             && coord.y >= board.hiddenRows && coord.y < numberOfRows + board.hiddenRows)
                     {
-                        string key = (coord.y - board.hiddenRows).ToString() + coord.x.ToString();
-                        squares.TryGetValue(key, out square);
+                        squares.TryGetValue(squaresKey(coord.y - board.hiddenRows, coord.x), out square);
                         square.color = block.color.ToArgb();
                     }
                 }
