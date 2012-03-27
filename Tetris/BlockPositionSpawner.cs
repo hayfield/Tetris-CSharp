@@ -132,6 +132,8 @@ namespace Tetris
                     count++;
                 }
             }
+
+            shuffle(ref bucket);
         }
 
         /// <summary>
@@ -195,8 +197,6 @@ namespace Tetris
                                         {false, true, true, true},
                                         {false, false, false, false}};
             bucket[6].color = Color.Purple;
-
-            shuffle(ref bucket);
         }
 
         /// <summary>
