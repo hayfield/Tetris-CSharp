@@ -68,7 +68,7 @@ namespace Tetris
         /// </summary>
         private void resetGame()
         {
-            board = new Board(numberOfRows, numberOfColumns, blocksetList.Text);
+            board = new Board((int)boardRowsSelect.Value, (int)boardColsSelect.Value, blocksetList.Text);
             tickTimer.Enabled = true;
             playing = true;
         }
