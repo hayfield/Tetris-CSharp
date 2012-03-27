@@ -116,6 +116,7 @@ namespace Tetris
             // spawn a new block
             currentBlock = blockSpawner.Next();
             currentBlock.y = hiddenRows - 2;
+            currentBlock.x = (numberOfColumns - currentBlock.squares.GetLength(1)) / 2;
         }
 
         /// <summary>
