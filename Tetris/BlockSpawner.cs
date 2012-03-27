@@ -12,7 +12,7 @@ namespace Tetris
         /// </summary>
         public BlockSpawner()
         {
-            positionSpawner = new BlockPositionSpawner();
+            positionSpawner = new BlockPositionSpawner("magic");
         }
 
         /// <summary>
