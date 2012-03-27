@@ -86,9 +86,21 @@ namespace Tetris
         }
 
         /// <summary>
-        /// Specify the possible positions that a block can start in
+        /// Set the possible positions that a block can start in
         /// </summary>
         private void setPossiblePositions(ref BlockStartPosition[] bucket)
+        {
+            if (loadedPositions == null || loadedPositions.Count == 0)
+            {
+                setKnownPossiblePositions(ref bucket);
+                setKnownPossiblePositions(ref bucket);
+            }
+        }
+
+        /// <summary>
+        /// Specify the possible positions that a block can start in if nothing has loaded from a file
+        /// </summary>
+        private void setKnownPossiblePositions(ref BlockStartPosition[] bucket)
         {
             // straight across in a line
             bucket[0] = new BlockStartPosition();
