@@ -41,7 +41,7 @@ namespace Tetris
         /// Assumes the blocks are all square with an even dimension
         /// </summary>
         /// <param name="set">The name of the blockset to load</param>
-        public static void load(String set)
+        public static List<String[]> load(String set)
         {
             String fileName = Path.Combine(set + "." + BlockLoader.filetype);
             Console.WriteLine("happy " + fileName);
@@ -54,6 +54,7 @@ namespace Tetris
                     List<String> currentArr = new List<String>();
                     bool readingIn = false;
 
+                    // read in the file
                     foreach(String line in contents){
                         // start reading a block if you're not currently and the size is valid
                         if (!readingIn && line.Length > 0 && line.Length % 2 == 0)
@@ -79,10 +80,25 @@ namespace Tetris
                             currentArr.Add(line);
                         }
                     }
+
+                    // do validation
+                    foreach (String[] block in blockStrings)
+                    {
+                        if (block.Length == 0 || block[0].Length == 0 || block[0].Length % 2 != 0)
+                            blockStrings.Remove(block);
+
+                        foreach (String row in block)
+                            if (row.Length != block[0].Length)
+                                blockStrings.Remove(block);
+                    }
+
+                    return blockStrings.Count == 0 ? null : blockStrings;
                 }
                 catch(Exception e){
                 }
             }
+
+            return null;
         }
     }
 }
