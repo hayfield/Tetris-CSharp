@@ -35,5 +35,28 @@ namespace Tetris
                 
             return names.ToArray();
         }
+
+        /// <summary>
+        /// Load a block set with the specified name
+        /// </summary>
+        /// <param name="set">The name of the blockset to load</param>
+        public static void load(String set)
+        {
+            String fileName = Path.Combine(set + "." + BlockLoader.filetype);
+            Console.WriteLine("happy " + fileName);
+            if (File.Exists(fileName))
+            {
+                Console.WriteLine("it exists");
+                try
+                {
+                    String[] contents = File.ReadAllLines(fileName);
+                    foreach(String line in contents){
+                        Console.WriteLine(line);
+                    }
+                }
+                catch(Exception e){
+                }
+            }
+        }
     }
 }
