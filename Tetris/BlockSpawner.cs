@@ -10,9 +10,9 @@ namespace Tetris
         /// <summary>
         /// A spawner which will create the next blocks to be played
         /// </summary>
-        public BlockSpawner()
+        public BlockSpawner(String blockSet)
         {
-            positionSpawner = new BlockPositionSpawner("magic");
+            positionSpawner = new BlockPositionSpawner(blockSet);
         }
 
         /// <summary>

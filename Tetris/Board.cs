@@ -16,9 +16,10 @@ namespace Tetris
         /// </summary>
         /// <param name="noOfRows">The number of visible rows on the board</param>
         /// <param name="noOfColumns">The number of columns on the board</param>
-        public Board(int noOfRows, int noOfColumns)
+        public Board(int noOfRows, int noOfColumns, String blockSet)
         {
             board = new int[noOfColumns, noOfRows + hiddenRows];
+            blockSpawner = new BlockSpawner(blockSet);
 
             // initialise the board by setting each cell as the default color
             for (int col = 0; col < noOfColumns; col++)
@@ -38,7 +39,7 @@ namespace Tetris
         /// <summary>
         /// A block spawner to specify the blocks to spawn
         /// </summary>
-        BlockSpawner blockSpawner = new BlockSpawner();
+        BlockSpawner blockSpawner;
 
         /// <summary>
         /// The number of rows that have been destroyed

@@ -34,6 +34,11 @@ namespace Tetris
                 currentBucket = new BlockStartPosition[loadedPositions.Count];
                 nextBucket = new BlockStartPosition[loadedPositions.Count];
             }
+            else
+            {
+                currentBucket = new BlockStartPosition[7];
+                nextBucket = new BlockStartPosition[7];
+            }
 
             setPossiblePositions(ref currentBucket);
             setPossiblePositions(ref nextBucket);

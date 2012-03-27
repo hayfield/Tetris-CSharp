@@ -43,6 +43,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.score = new System.Windows.Forms.Label();
             this.tickTimer = new System.Windows.Forms.Timer(this.components);
+            this.blocksetLabel = new System.Windows.Forms.Label();
+            this.blocksetName = new System.Windows.Forms.TextBox();
             this.tableLayout.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.upcomingBlocks.SuspendLayout();
@@ -154,6 +156,8 @@
             // upcomingBlocks
             // 
             this.tableLayout.SetColumnSpan(this.upcomingBlocks, 2);
+            this.upcomingBlocks.Controls.Add(this.blocksetName);
+            this.upcomingBlocks.Controls.Add(this.blocksetLabel);
             this.upcomingBlocks.Controls.Add(this.textBox2);
             this.upcomingBlocks.Controls.Add(this.textBox1);
             this.upcomingBlocks.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -190,6 +194,23 @@
             // 
             this.tickTimer.Interval = 500;
             this.tickTimer.Tick += new System.EventHandler(this.tickTimer_Tick);
+            // 
+            // blocksetLabel
+            // 
+            this.blocksetLabel.AutoSize = true;
+            this.blocksetLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blocksetLabel.Location = new System.Drawing.Point(3, 217);
+            this.blocksetLabel.Name = "blocksetLabel";
+            this.blocksetLabel.Size = new System.Drawing.Size(83, 20);
+            this.blocksetLabel.TabIndex = 5;
+            this.blocksetLabel.Text = "Blockset:";
+            // 
+            // blocksetName
+            // 
+            this.blocksetName.Location = new System.Drawing.Point(32, 240);
+            this.blocksetName.Name = "blocksetName";
+            this.blocksetName.Size = new System.Drawing.Size(100, 20);
+            this.blocksetName.TabIndex = 6;
             // 
             // TetrisGame
             // 
@@ -230,6 +251,8 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Label score;
+        private System.Windows.Forms.TextBox blocksetName;
+        private System.Windows.Forms.Label blocksetLabel;
 
     }
 }
