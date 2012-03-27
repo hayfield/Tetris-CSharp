@@ -31,7 +31,6 @@ namespace Tetris
 
             if (loadedPositions != null && loadedPositions.Count != 0)
             {
-                Console.WriteLine("loaded " + loadedPositions.Count);
                 currentBucket = new BlockStartPosition[loadedPositions.Count];
                 nextBucket = new BlockStartPosition[loadedPositions.Count];
             }
@@ -66,6 +65,11 @@ namespace Tetris
         /// Start positions that have been loaded from a file
         /// </summary>
         private List<String[]> loadedPositions = null;
+
+        /// <summary>
+        /// A random number generator for working out colours so that the first two buckets have different colors
+        /// </summary>
+        private Random randGen = new Random();
 
         #endregion variables
 
@@ -117,7 +121,7 @@ namespace Tetris
                     }
                     // give it a random color. Pretty ^_^
                     KnownColor[] names = (KnownColor[]) Enum.GetValues(typeof(KnownColor));
-                    KnownColor randomColorName = names[new Random().Next(names.Length)];
+                    KnownColor randomColorName = names[randGen.Next(names.Length)];
                     bucket[count].color = Color.FromKnownColor(randomColorName);
 
                     count++;
