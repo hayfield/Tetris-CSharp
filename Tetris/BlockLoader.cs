@@ -47,7 +47,6 @@ namespace Tetris
             Console.WriteLine("happy " + fileName);
             if (File.Exists(fileName))
             {
-                Console.WriteLine("it exists");
                 try
                 {
                     String[] contents = File.ReadAllLines(fileName);
