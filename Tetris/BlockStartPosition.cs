@@ -11,7 +11,6 @@ namespace Tetris
     /// </summary>
     class BlockStartPosition
     {
-
         /// <summary>
         /// The start position of the block
         /// </summary>
