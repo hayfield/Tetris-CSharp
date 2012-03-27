@@ -41,7 +41,7 @@ namespace Tetris
         /// Not consistent with the board, but it makes the visualisations for
         /// the starting positions clearer.
         /// </summary>
-        public Boolean[,] squares = new Boolean[4, 4];
+        public Boolean[,] squares;
 
         /// <summary>
         /// The x coordinate of the block
@@ -88,7 +88,7 @@ namespace Tetris
         public void rotateClockwise()
         {
             // would be quicker to use matrices, but thinking is hard ;P
-            Boolean[,] temp = new Boolean[4, 4];
+            Boolean[,] temp = new Boolean[squares.GetLength(0), squares.GetLength(1)];
 
             temp[0,0] = squares[0,3];
             temp[1,0] = squares[0,2];
