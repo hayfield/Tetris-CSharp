@@ -128,7 +128,7 @@ namespace Tetris
                     KnownColor[] names = (KnownColor[]) Enum.GetValues(typeof(KnownColor));
                     KnownColor randomColorName = names[randGen.Next(names.Length)];
                     bucket[count].color = Color.FromKnownColor(randomColorName);
-
+                    
                     count++;
                 }
             }
