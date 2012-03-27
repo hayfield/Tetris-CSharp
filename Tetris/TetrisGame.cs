@@ -75,7 +75,6 @@ namespace Tetris
             createSquares();
             tickTimer.Enabled = true;
             playing = true;
-            Console.WriteLine("reset");
         }
 
         /// <summary>
