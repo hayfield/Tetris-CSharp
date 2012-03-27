@@ -38,6 +38,7 @@ namespace Tetris
 
         /// <summary>
         /// Load a block set with the specified name
+        /// Assumes the blocks are all square with an even dimension
         /// </summary>
         /// <param name="set">The name of the blockset to load</param>
         public static void load(String set)
@@ -50,8 +51,32 @@ namespace Tetris
                 try
                 {
                     String[] contents = File.ReadAllLines(fileName);
+                    List<String[]> blockStrings = new List<String[]>();
+                    List<String> currentArr = new List<String>();
+                    bool readingIn = false;
+
                     foreach(String line in contents){
-                        Console.WriteLine(line);
+                        // start reading a block if you're not currently and the size is valid
+                        if (!readingIn && line.Length > 0 && line.Length % 2 == 0)
+                        {
+                            currentArr.Clear();
+                            readingIn = true;
+                        }
+                        // if reached the end of a block
+                        if (readingIn && line.Length == 0)
+                        {
+                            // and something in the block has been read
+                            if (currentArr[0].Length > 0)
+                            {
+                                blockStrings.Add(currentArr.ToArray());
+                                readingIn = false;
+                            }
+                        }
+                        // read in the contents of a block
+                        if (readingIn && line.Length > 0)
+                        {
+                            currentArr.Add(line);
+                        }
                     }
                 }
                 catch(Exception e){
