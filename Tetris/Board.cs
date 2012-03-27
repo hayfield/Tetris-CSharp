@@ -53,7 +53,7 @@ namespace Tetris
         /// <summary>
         /// The number of rows that are hidden above the top of the grid
         /// </summary>
-        public readonly int hiddenRows = 2;
+        public readonly int hiddenRows = 20;
 
         /// <summary>
         /// The default color of the board when there are no blocks there
@@ -114,6 +114,7 @@ namespace Tetris
 
             // spawn a new block
             currentBlock = blockSpawner.Next();
+            currentBlock.y = hiddenRows - 2;
         }
 
         /// <summary>

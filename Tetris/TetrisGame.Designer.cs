@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.scoreLabel = new System.Windows.Forms.Label();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,9 +41,8 @@
             this.upcomingBlocks = new System.Windows.Forms.Panel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tickTimer = new System.Windows.Forms.Timer(this.components);
-            this.scoreLabel = new System.Windows.Forms.Label();
             this.score = new System.Windows.Forms.Label();
+            this.tickTimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayout.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.upcomingBlocks.SuspendLayout();
@@ -53,7 +53,7 @@
             this.tableLayout.ColumnCount = 3;
             this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 87.89474F));
             this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.10526F));
-            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.tableLayout.Controls.Add(this.scoreLabel, 0, 4);
             this.tableLayout.Controls.Add(this.menuStrip, 0, 0);
             this.tableLayout.Controls.Add(this.newGameButton, 1, 2);
@@ -74,6 +74,16 @@
             this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayout.Size = new System.Drawing.Size(656, 506);
             this.tableLayout.TabIndex = 0;
+            // 
+            // scoreLabel
+            // 
+            this.scoreLabel.AutoSize = true;
+            this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreLabel.Location = new System.Drawing.Point(489, 423);
+            this.scoreLabel.Name = "scoreLabel";
+            this.scoreLabel.Size = new System.Drawing.Size(56, 40);
+            this.scoreLabel.TabIndex = 8;
+            this.scoreLabel.Text = "Score:";
             // 
             // menuStrip
             // 
@@ -126,7 +136,7 @@
             // 
             this.rowsCleared.AutoSize = true;
             this.rowsCleared.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowsCleared.Location = new System.Drawing.Point(556, 390);
+            this.rowsCleared.Location = new System.Drawing.Point(555, 390);
             this.rowsCleared.Name = "rowsCleared";
             this.rowsCleared.Size = new System.Drawing.Size(19, 20);
             this.rowsCleared.TabIndex = 5;
@@ -166,30 +176,20 @@
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 0;
             // 
-            // tickTimer
-            // 
-            this.tickTimer.Interval = 500;
-            this.tickTimer.Tick += new System.EventHandler(this.tickTimer_Tick);
-            // 
-            // scoreLabel
-            // 
-            this.scoreLabel.AutoSize = true;
-            this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreLabel.Location = new System.Drawing.Point(489, 423);
-            this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(61, 20);
-            this.scoreLabel.TabIndex = 8;
-            this.scoreLabel.Text = "Score:";
-            // 
             // score
             // 
             this.score.AutoSize = true;
             this.score.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.score.Location = new System.Drawing.Point(556, 423);
+            this.score.Location = new System.Drawing.Point(555, 423);
             this.score.Name = "score";
             this.score.Size = new System.Drawing.Size(19, 20);
             this.score.TabIndex = 9;
             this.score.Text = "0";
+            // 
+            // tickTimer
+            // 
+            this.tickTimer.Interval = 500;
+            this.tickTimer.Tick += new System.EventHandler(this.tickTimer_Tick);
             // 
             // TetrisGame
             // 
