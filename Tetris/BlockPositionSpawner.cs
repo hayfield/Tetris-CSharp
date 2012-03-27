@@ -95,6 +95,29 @@ namespace Tetris
                 setKnownPossiblePositions(ref bucket);
                 setKnownPossiblePositions(ref bucket);
             }
+            else
+            {
+                int count = 0;
+
+                foreach (String[] block in loadedPositions)
+                {
+                    bucket[count] = new BlockStartPosition();
+                    bucket[count].position = new Boolean[block.Length, block.Length];
+                    // load the positions
+                    for (var row = 0; row < block.Length; row++)
+                    {
+                        char[] rowArr = block[row].ToCharArray();
+                        for (var col = 0; col < block[row].Length; col++)
+                        {
+                            bucket[count].position[row, col] = rowArr[col] == '#';
+                        }
+                    }
+                    // give it a random color. Pretty ^_^
+                    KnownColor[] names = (KnownColor[]) Enum.GetValues(typeof(KnownColor));
+                    KnownColor randomColorName = names[new Random().Next(names.Length)];
+                    bucket[count].color = Color.FromKnownColor(randomColorName);
+                }
+            }
         }
 
         /// <summary>
