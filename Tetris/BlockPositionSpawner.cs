@@ -14,6 +14,9 @@ namespace Tetris
         /// </summary>
         public BlockPositionSpawner()
         {
+            currentBucket = new BlockStartPosition[7];
+            nextBucket = new BlockStartPosition[7];
+
             setPossiblePositions(ref currentBucket);
             setPossiblePositions(ref nextBucket);
         }
@@ -23,12 +26,12 @@ namespace Tetris
         /// <summary>
         /// The current bucket of blocks that should be taken from when selecting a new one
         /// </summary>
-        private BlockStartPosition[] currentBucket = new BlockStartPosition[7];
+        private BlockStartPosition[] currentBucket;
 
         /// <summary>
         /// The next bucket of blocks that should be taken from when selecting a new one
         /// </summary>
-        private BlockStartPosition[] nextBucket = new BlockStartPosition[7];
+        private BlockStartPosition[] nextBucket;
 
         /// <summary>
         /// A random number generator
