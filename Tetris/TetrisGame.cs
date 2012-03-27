@@ -19,6 +19,7 @@ namespace Tetris
         {
             InitializeComponent();
             createSquares();
+            blocksetList.DataSource = BlockLoader.names();
         }
 
         #region variables
@@ -67,7 +68,7 @@ namespace Tetris
         /// </summary>
         private void resetGame()
         {
-            board = new Board(numberOfRows, numberOfColumns, blocksetName.Text);
+            board = new Board(numberOfRows, numberOfColumns, blocksetList.Text);
             tickTimer.Enabled = true;
             playing = true;
         }

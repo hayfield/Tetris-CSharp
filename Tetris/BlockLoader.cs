@@ -34,7 +34,7 @@ namespace Tetris
                 String fileType = file.Split('.').Last();
                 if (fileType == BlockLoader.filetype)
                 {
-                    names.Add(file);
+                    names.Add(file.Split('.').ElementAt(1).Substring(1));
                 }
             }
                 

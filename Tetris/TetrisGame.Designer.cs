@@ -39,12 +39,12 @@
             this.rowsCleared = new System.Windows.Forms.Label();
             this.gameWindow = new System.Windows.Forms.Panel();
             this.upcomingBlocks = new System.Windows.Forms.Panel();
+            this.blocksetLabel = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.score = new System.Windows.Forms.Label();
             this.tickTimer = new System.Windows.Forms.Timer(this.components);
-            this.blocksetLabel = new System.Windows.Forms.Label();
-            this.blocksetName = new System.Windows.Forms.TextBox();
+            this.blocksetList = new System.Windows.Forms.ComboBox();
             this.tableLayout.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.upcomingBlocks.SuspendLayout();
@@ -55,7 +55,7 @@
             this.tableLayout.ColumnCount = 3;
             this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 87.89474F));
             this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.10526F));
-            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
+            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104F));
             this.tableLayout.Controls.Add(this.scoreLabel, 0, 4);
             this.tableLayout.Controls.Add(this.menuStrip, 0, 0);
             this.tableLayout.Controls.Add(this.newGameButton, 1, 2);
@@ -81,7 +81,7 @@
             // 
             this.scoreLabel.AutoSize = true;
             this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreLabel.Location = new System.Drawing.Point(489, 423);
+            this.scoreLabel.Location = new System.Drawing.Point(488, 423);
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(56, 40);
             this.scoreLabel.TabIndex = 8;
@@ -116,9 +116,9 @@
             // 
             this.tableLayout.SetColumnSpan(this.newGameButton, 2);
             this.newGameButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.newGameButton.Location = new System.Drawing.Point(489, 359);
+            this.newGameButton.Location = new System.Drawing.Point(488, 359);
             this.newGameButton.Name = "newGameButton";
-            this.newGameButton.Size = new System.Drawing.Size(164, 23);
+            this.newGameButton.Size = new System.Drawing.Size(165, 23);
             this.newGameButton.TabIndex = 3;
             this.newGameButton.Text = "New Game";
             this.newGameButton.UseVisualStyleBackColor = true;
@@ -128,7 +128,7 @@
             // 
             this.rowsClearedLabel.AutoSize = true;
             this.rowsClearedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowsClearedLabel.Location = new System.Drawing.Point(489, 390);
+            this.rowsClearedLabel.Location = new System.Drawing.Point(488, 390);
             this.rowsClearedLabel.Name = "rowsClearedLabel";
             this.rowsClearedLabel.Size = new System.Drawing.Size(58, 20);
             this.rowsClearedLabel.TabIndex = 4;
@@ -138,7 +138,7 @@
             // 
             this.rowsCleared.AutoSize = true;
             this.rowsCleared.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowsCleared.Location = new System.Drawing.Point(555, 390);
+            this.rowsCleared.Location = new System.Drawing.Point(554, 390);
             this.rowsCleared.Name = "rowsCleared";
             this.rowsCleared.Size = new System.Drawing.Size(19, 20);
             this.rowsCleared.TabIndex = 5;
@@ -150,21 +150,31 @@
             this.gameWindow.Location = new System.Drawing.Point(3, 29);
             this.gameWindow.Name = "gameWindow";
             this.tableLayout.SetRowSpan(this.gameWindow, 4);
-            this.gameWindow.Size = new System.Drawing.Size(480, 474);
+            this.gameWindow.Size = new System.Drawing.Size(479, 474);
             this.gameWindow.TabIndex = 6;
             // 
             // upcomingBlocks
             // 
             this.tableLayout.SetColumnSpan(this.upcomingBlocks, 2);
-            this.upcomingBlocks.Controls.Add(this.blocksetName);
+            this.upcomingBlocks.Controls.Add(this.blocksetList);
             this.upcomingBlocks.Controls.Add(this.blocksetLabel);
             this.upcomingBlocks.Controls.Add(this.textBox2);
             this.upcomingBlocks.Controls.Add(this.textBox1);
             this.upcomingBlocks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.upcomingBlocks.Location = new System.Drawing.Point(489, 29);
+            this.upcomingBlocks.Location = new System.Drawing.Point(488, 29);
             this.upcomingBlocks.Name = "upcomingBlocks";
-            this.upcomingBlocks.Size = new System.Drawing.Size(164, 324);
+            this.upcomingBlocks.Size = new System.Drawing.Size(165, 324);
             this.upcomingBlocks.TabIndex = 7;
+            // 
+            // blocksetLabel
+            // 
+            this.blocksetLabel.AutoSize = true;
+            this.blocksetLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blocksetLabel.Location = new System.Drawing.Point(3, 217);
+            this.blocksetLabel.Name = "blocksetLabel";
+            this.blocksetLabel.Size = new System.Drawing.Size(83, 20);
+            this.blocksetLabel.TabIndex = 5;
+            this.blocksetLabel.Text = "Blockset:";
             // 
             // textBox2
             // 
@@ -184,7 +194,7 @@
             // 
             this.score.AutoSize = true;
             this.score.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.score.Location = new System.Drawing.Point(555, 423);
+            this.score.Location = new System.Drawing.Point(554, 423);
             this.score.Name = "score";
             this.score.Size = new System.Drawing.Size(19, 20);
             this.score.TabIndex = 9;
@@ -195,22 +205,14 @@
             this.tickTimer.Interval = 500;
             this.tickTimer.Tick += new System.EventHandler(this.tickTimer_Tick);
             // 
-            // blocksetLabel
+            // blocksetList
             // 
-            this.blocksetLabel.AutoSize = true;
-            this.blocksetLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blocksetLabel.Location = new System.Drawing.Point(3, 217);
-            this.blocksetLabel.Name = "blocksetLabel";
-            this.blocksetLabel.Size = new System.Drawing.Size(83, 20);
-            this.blocksetLabel.TabIndex = 5;
-            this.blocksetLabel.Text = "Blockset:";
-            // 
-            // blocksetName
-            // 
-            this.blocksetName.Location = new System.Drawing.Point(32, 240);
-            this.blocksetName.Name = "blocksetName";
-            this.blocksetName.Size = new System.Drawing.Size(100, 20);
-            this.blocksetName.TabIndex = 6;
+            this.blocksetList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.blocksetList.FormattingEnabled = true;
+            this.blocksetList.Location = new System.Drawing.Point(11, 240);
+            this.blocksetList.Name = "blocksetList";
+            this.blocksetList.Size = new System.Drawing.Size(145, 21);
+            this.blocksetList.TabIndex = 7;
             // 
             // TetrisGame
             // 
@@ -251,8 +253,8 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Label score;
-        private System.Windows.Forms.TextBox blocksetName;
         private System.Windows.Forms.Label blocksetLabel;
+        private System.Windows.Forms.ComboBox blocksetList;
 
     }
 }
