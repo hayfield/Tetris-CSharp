@@ -84,12 +84,22 @@ namespace Tetris
                     // do validation
                     foreach (String[] block in blockStrings)
                     {
+                        bool isSolid = false;
+
                         if (block.Length == 0 || block[0].Length == 0 || block[0].Length % 2 != 0)
                             blockStrings.Remove(block);
 
                         foreach (String row in block)
+                        {
                             if (row.Length != block[0].Length)
                                 blockStrings.Remove(block);
+
+                            if (row.Contains('#'))
+                                isSolid = true;
+                        }
+
+                        if(!isSolid)
+                            blockStrings.Remove(block);
                     }
 
                     return blockStrings.Count == 0 ? null : blockStrings;
