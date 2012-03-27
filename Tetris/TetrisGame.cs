@@ -19,8 +19,6 @@ namespace Tetris
         {
             InitializeComponent();
             createSquares();
-            String[] s = BlockLoader.names();
-            BlockLoader.load("magic");
         }
 
         #region variables
