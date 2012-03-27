@@ -12,6 +12,11 @@ namespace Tetris
     public static class BlockLoader
     {
         /// <summary>
+        /// The file type that block sets are stored in
+        /// </summary>
+        public static readonly String filetype = "blockset";
+
+        /// <summary>
         /// Check the directory that the program is running in for any blockset files
         /// </summary>
         /// <returns>A list of names of all the blocksets</returns>
@@ -21,13 +26,10 @@ namespace Tetris
             List<String> names = new List<String>();
             foreach (String file in files)
             {
-                Console.WriteLine(file);
                 String fileType = file.Split('.').Last();
-                Console.WriteLine(fileType);
-                if (fileType == "exe")
+                if (fileType == BlockLoader.filetype)
                 {
                     names.Add(file);
-                    Console.WriteLine("added");
                 }
             }
                 
