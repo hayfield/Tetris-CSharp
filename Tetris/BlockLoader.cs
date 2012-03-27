@@ -49,7 +49,7 @@ namespace Tetris
         public static List<String[]> load(String set)
         {
             String fileName = Path.Combine(set + "." + BlockLoader.filetype);
-            Console.WriteLine("happy " + fileName);
+            
             if (File.Exists(fileName))
             {
                 try
@@ -73,7 +73,6 @@ namespace Tetris
                             // and something in the block has been read
                             if (currentArr.Count > 0)
                             {
-                                Console.WriteLine("add set " + currentArr.Count);
                                 blockStrings.Add(currentArr.ToArray());
                                 readingIn = false;
                             }
@@ -81,7 +80,6 @@ namespace Tetris
                         // read in the contents of a block
                         if (readingIn && line.Length > 0)
                         {
-                            Console.WriteLine("add line " + line);
                             currentArr.Add(line);
                         }
                     }
