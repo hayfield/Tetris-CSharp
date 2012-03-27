@@ -29,8 +29,9 @@ namespace Tetris
         {
             loadedPositions = BlockLoader.load(name);
 
-            if (loadedPositions != null)
+            if (loadedPositions != null && loadedPositions.Count != 0)
             {
+                Console.WriteLine("loaded " + loadedPositions.Count);
                 currentBucket = new BlockStartPosition[loadedPositions.Count];
                 nextBucket = new BlockStartPosition[loadedPositions.Count];
             }
@@ -75,7 +76,6 @@ namespace Tetris
         public BlockStartPosition Next()
         {
             BlockStartPosition blockToReturn = currentBucket[nextBlock];
-
             currentBucket[nextBlock] = nextBucket[nextBlock];
             nextBlock++;
 
@@ -84,7 +84,7 @@ namespace Tetris
                 nextBlock = 0;
                 setPossiblePositions(ref nextBucket);
             }
-
+            
             return blockToReturn;
         }
 
@@ -119,6 +119,8 @@ namespace Tetris
                     KnownColor[] names = (KnownColor[]) Enum.GetValues(typeof(KnownColor));
                     KnownColor randomColorName = names[new Random().Next(names.Length)];
                     bucket[count].color = Color.FromKnownColor(randomColorName);
+
+                    count++;
                 }
             }
         }
