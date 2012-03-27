@@ -66,8 +66,9 @@ namespace Tetris
                         if (readingIn && line.Length == 0)
                         {
                             // and something in the block has been read
-                            if (currentArr[0].Length > 0)
+                            if (currentArr.Count > 0)
                             {
+                                Console.WriteLine("add set " + currentArr.Count);
                                 blockStrings.Add(currentArr.ToArray());
                                 readingIn = false;
                             }
@@ -75,6 +76,7 @@ namespace Tetris
                         // read in the contents of a block
                         if (readingIn && line.Length > 0)
                         {
+                            Console.WriteLine("add line " + line);
                             currentArr.Add(line);
                         }
                     }
