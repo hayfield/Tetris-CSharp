@@ -150,7 +150,7 @@ namespace Tetris
 
                     // find where there are filled squares in the row, but not where the little one landed
                     for (int col = 0; col < numberOfColumns; col++)
-                        if (board[col, coord.y] != boardColor && col != coord.x)
+                        if (board[col, coord.y] != boardColor)
                             filledPositions.Add(col);
 
                     // do another pass through and fill in the squares next to where there are empty spots
