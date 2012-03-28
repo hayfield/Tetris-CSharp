@@ -81,7 +81,7 @@ namespace Tetris
         /// <summary>
         /// Determines whether the block has a single solid cell
         /// </summary>
-        public bool singleCell()
+        public bool isSingleCell()
         {
             int count = 0;
 
