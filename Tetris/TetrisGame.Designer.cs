@@ -64,7 +64,7 @@
             this.tableLayout.ColumnCount = 3;
             this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.28835F));
             this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.71165F));
-            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
+            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 118F));
             this.tableLayout.Controls.Add(this.scoreLabel, 0, 4);
             this.tableLayout.Controls.Add(this.menuStrip, 0, 0);
             this.tableLayout.Controls.Add(this.newGameButton, 1, 2);
@@ -90,7 +90,7 @@
             // 
             this.scoreLabel.AutoSize = true;
             this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreLabel.Location = new System.Drawing.Point(457, 441);
+            this.scoreLabel.Location = new System.Drawing.Point(456, 441);
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(61, 20);
             this.scoreLabel.TabIndex = 8;
@@ -125,9 +125,9 @@
             // 
             this.tableLayout.SetColumnSpan(this.newGameButton, 2);
             this.newGameButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.newGameButton.Location = new System.Drawing.Point(457, 375);
+            this.newGameButton.Location = new System.Drawing.Point(456, 375);
             this.newGameButton.Name = "newGameButton";
-            this.newGameButton.Size = new System.Drawing.Size(196, 23);
+            this.newGameButton.Size = new System.Drawing.Size(197, 23);
             this.newGameButton.TabIndex = 3;
             this.newGameButton.Text = "New Game";
             this.newGameButton.UseVisualStyleBackColor = true;
@@ -137,7 +137,7 @@
             // 
             this.rowsClearedLabel.AutoSize = true;
             this.rowsClearedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowsClearedLabel.Location = new System.Drawing.Point(457, 408);
+            this.rowsClearedLabel.Location = new System.Drawing.Point(456, 408);
             this.rowsClearedLabel.Name = "rowsClearedLabel";
             this.rowsClearedLabel.Size = new System.Drawing.Size(58, 20);
             this.rowsClearedLabel.TabIndex = 4;
@@ -147,7 +147,7 @@
             // 
             this.rowsCleared.AutoSize = true;
             this.rowsCleared.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rowsCleared.Location = new System.Drawing.Point(541, 408);
+            this.rowsCleared.Location = new System.Drawing.Point(540, 408);
             this.rowsCleared.Name = "rowsCleared";
             this.rowsCleared.Size = new System.Drawing.Size(19, 20);
             this.rowsCleared.TabIndex = 5;
@@ -159,7 +159,7 @@
             this.gameWindow.Location = new System.Drawing.Point(3, 30);
             this.gameWindow.Name = "gameWindow";
             this.tableLayout.SetRowSpan(this.gameWindow, 4);
-            this.gameWindow.Size = new System.Drawing.Size(448, 491);
+            this.gameWindow.Size = new System.Drawing.Size(447, 491);
             this.gameWindow.TabIndex = 6;
             // 
             // upcomingBlocks
@@ -176,9 +176,9 @@
             this.upcomingBlocks.Controls.Add(this.textBox2);
             this.upcomingBlocks.Controls.Add(this.textBox1);
             this.upcomingBlocks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.upcomingBlocks.Location = new System.Drawing.Point(457, 30);
+            this.upcomingBlocks.Location = new System.Drawing.Point(456, 30);
             this.upcomingBlocks.Name = "upcomingBlocks";
-            this.upcomingBlocks.Size = new System.Drawing.Size(196, 339);
+            this.upcomingBlocks.Size = new System.Drawing.Size(197, 339);
             this.upcomingBlocks.TabIndex = 7;
             // 
             // sqSizeSelect
@@ -312,7 +312,7 @@
             // 
             this.score.AutoSize = true;
             this.score.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.score.Location = new System.Drawing.Point(541, 441);
+            this.score.Location = new System.Drawing.Point(540, 441);
             this.score.Name = "score";
             this.score.Size = new System.Drawing.Size(19, 20);
             this.score.TabIndex = 9;
