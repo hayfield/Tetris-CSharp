@@ -78,6 +78,21 @@ namespace Tetris
             return coord;
         }
 
+        /// <summary>
+        /// Determines whether the block has a single solid cell
+        /// </summary>
+        public bool singleCell()
+        {
+            int count = 0;
+
+            for (int col = 0; col < squares.GetLength(0); col++)
+                for (int row = 0; row < squares.GetLength(1); row++)
+                    if (squares[col, row])
+                        count++;
+
+            return count == 1;
+        }
+
         #endregion utility
 
         #region movement
