@@ -87,6 +87,11 @@ namespace Tetris
         /// </summary>
         int numberOfRowsTotal;
 
+        /// <summary>
+        /// Random chance to blow upper rows
+        /// </summary>
+        Random bomb = new Random();
+
         #endregion variables
 
         /// <summary>
@@ -217,6 +222,9 @@ namespace Tetris
         /// <param name="row">The row in terms of board[col, row] to remove</param>
         private void removeRow(int rowToRemove)
         {
+            // bomb chance of 100%
+            int chance = bomb.Next(1, 100);
+
             if (rowToRemove == 0)
                 return;
 
@@ -227,7 +235,16 @@ namespace Tetris
                 for (int col = 0; col < numberOfColumns; col++)
                 {
                     // and overwriting the current position with the one above
-                    board[col, row] = board[col, row - 1];
+                    if (chance == 25) // on a 25% chance
+                    {
+                        // remove rows above the full row (like a bomb)
+                        board[col, row] = board[col, 1];
+                    }
+                    else
+                    {
+                        // remove a row as usual
+                        board[col, row] = board[col, row - 1];
+                    }
                 }
             }
 
