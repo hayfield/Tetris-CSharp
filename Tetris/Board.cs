@@ -92,6 +92,11 @@ namespace Tetris
         /// </summary>
         Random bomb = new Random();
 
+		/// <summary>
+		/// Decrease block-dropping duration after 3 stacks of non-full row
+		/// </summary>
+		public int spdMinus = 2;
+
         #endregion variables
 
         /// <summary>
@@ -189,6 +194,24 @@ namespace Tetris
             score += (rowsDestroyed - rowsDestroyedStart) * (rowsDestroyed - rowsDestroyedStart);
         }
 
+		/// <summary>
+		/// Checks whether the 3 rows are confirmed non-full, activate the decrease of speed of the blocks by if-else
+		/// </summary>
+		private void activespdMinus()
+		{
+			if(haveThreeRow ())
+			if (spdMinus == 0) {
+				currentBlock.y--;
+				spdMinus++;
+			} else if (spdMinus == 1) {
+				currentBlock.y--;
+				spdMinus++;
+			} else if (spdMinus >= 2) {
+				spdMinus = 0;
+			}
+		}
+
+
         /// <summary>
         /// Checks to see whether a specified row is full.
         /// If it is, deletes the row and moves down the board above it.
@@ -199,6 +222,21 @@ namespace Tetris
             if (hasFullRow(rowToCheck))
                 removeRow(rowToCheck);
         }
+
+		/// <summary>
+		/// Checks to see whether there have throw row is non-full
+		/// </summary>
+		/// <returns>Whether the specified 3 rows are confirm non-full</returns>
+		private Boolean haveThreeRow()
+		{
+			Boolean have = false;
+
+			for (int col = 0; col < numberOfColumns; col++)
+				if (board [col, numberOfRowsTotal - 3] != boardColor)
+					have = true;
+			return have;
+		}
+
 
         /// <summary>
         /// Checks to see whether the specified row is full and should be removed
@@ -271,6 +309,8 @@ namespace Tetris
         {
             if (canDropFurther())
                 currentBlock.y++;
+			activespdMinus ();
+			
         }
 
         /// <summary>
