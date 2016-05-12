@@ -15,7 +15,8 @@ namespace Tetris
             leftKeyPressed = false;
             rightKeyPressed = false;
             rotateKeyPressed = false;
-            downKeyPressed = false;
+			downKeyPressed = false;
+			swapKeyPressed = false;
         }
 
         /// <summary>
@@ -40,7 +41,9 @@ namespace Tetris
             else if (key == rotateKey)
             {
                 rotateKeyPressed = pressed;
-            }
+			} else if (key == swapKey) {
+				swapKeyPressed = pressed;				
+			} 
         }
 
         #region variables
@@ -67,6 +70,11 @@ namespace Tetris
         /// </summary>
         public readonly char downKey = 's';
 
+		/// <summary>
+		/// The key to swap the block
+		/// </summary>
+		public readonly char swapKey = 'x';
+
         #endregion keys
 
         #region keyStatuses
@@ -90,6 +98,11 @@ namespace Tetris
         /// Indicates whether the down key is pressed or not
         /// </summary>
         public Boolean downKeyPressed { get; set; }
+
+		/// <summary>
+		/// Indicates whether the space key is pressed or not
+		/// </summary>
+		public Boolean swapKeyPressed { get; set; }
 
         #endregion keyStatuses
 

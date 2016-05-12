@@ -72,6 +72,11 @@ namespace Tetris
         /// </summary>
         public Block currentBlock;
 
+		/// <summary>
+		/// The block that is currently being stored
+		/// </summary>
+		public Block storedBlock;
+
         /// <summary>
         /// The number of visible columns on the board
         /// </summary>
@@ -86,6 +91,16 @@ namespace Tetris
         /// The total number of rows on the board
         /// </summary>
         int numberOfRowsTotal;
+
+        /// <summary>
+        /// Random chance to blow upper rows
+        /// </summary>
+        Random bomb = new Random();
+
+		/// <summary>
+		/// Decrease block-dropping duration after 3 stacks of non-full row
+		/// </summary>
+		public int spdMinus = 2;
 
         #endregion variables
 
@@ -184,6 +199,24 @@ namespace Tetris
             score += (rowsDestroyed - rowsDestroyedStart) * (rowsDestroyed - rowsDestroyedStart);
         }
 
+		/// <summary>
+		/// Checks whether the 3 rows are confirmed non-full, activate the decrease of speed of the blocks by if-else
+		/// </summary>
+		private void activespdMinus()
+		{
+			if(haveThreeRow ())
+			if (spdMinus == 0) {
+				currentBlock.y--;
+				spdMinus++;
+			} else if (spdMinus == 1) {
+				currentBlock.y--;
+				spdMinus++;
+			} else if (spdMinus >= 2) {
+				spdMinus = 0;
+			}
+		}
+
+
         /// <summary>
         /// Checks to see whether a specified row is full.
         /// If it is, deletes the row and moves down the board above it.
@@ -194,6 +227,21 @@ namespace Tetris
             if (hasFullRow(rowToCheck))
                 removeRow(rowToCheck);
         }
+
+		/// <summary>
+		/// Checks to see whether there have throw row is non-full
+		/// </summary>
+		/// <returns>Whether the specified 3 rows are confirm non-full</returns>
+		private Boolean haveThreeRow()
+		{
+			Boolean have = false;
+
+			for (int col = 0; col < numberOfColumns; col++)
+				if (board [col, numberOfRowsTotal - 3] != boardColor)
+					have = true;
+			return have;
+		}
+
 
         /// <summary>
         /// Checks to see whether the specified row is full and should be removed
@@ -217,6 +265,9 @@ namespace Tetris
         /// <param name="row">The row in terms of board[col, row] to remove</param>
         private void removeRow(int rowToRemove)
         {
+            // bomb chance of 100%
+            int chance = bomb.Next(1, 100);
+
             if (rowToRemove == 0)
                 return;
 
@@ -227,7 +278,16 @@ namespace Tetris
                 for (int col = 0; col < numberOfColumns; col++)
                 {
                     // and overwriting the current position with the one above
-                    board[col, row] = board[col, row - 1];
+                    if (chance == 25) // on a 25% chance
+                    {
+                        // remove rows above the full row (like a bomb)
+                        board[col, row] = board[col, 1];
+                    }
+                    else
+                    {
+                        // remove a row as usual
+                        board[col, row] = board[col, row - 1];
+                    }
                 }
             }
 
@@ -254,6 +314,8 @@ namespace Tetris
         {
             if (canDropFurther())
                 currentBlock.y++;
+			activespdMinus ();
+			
         }
 
         /// <summary>
@@ -273,6 +335,16 @@ namespace Tetris
             if (canMoveToSide(true))
                 currentBlock.x++;
         }
+
+
+
+		public void swapBlock(){
+			if (canSwap ()) {
+				Block blk = currentBlock;
+				currentBlock = storedBlock;
+				storedBlock = blk;
+			}
+		}
 
         #endregion blockMovement
 
@@ -367,6 +439,26 @@ namespace Tetris
 
             return canDrop;
         }
+
+		private Boolean canSwap()
+		{
+			if (storedBlock == null) {
+				// spawn a new block
+				storedBlock = blockSpawner.Next();
+			}
+			Boolean canSwap = true;
+
+			storedBlock.y = currentBlock.y;
+			storedBlock.x = currentBlock.x;
+
+			Block whenSwap= storedBlock.Clone();
+
+			if (!canBeHere(whenSwap))
+				canSwap = false;
+
+			return canSwap;
+		}
+
 
         /// <summary>
         /// Checks to see whether there's something in the way to one side of the block

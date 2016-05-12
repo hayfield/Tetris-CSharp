@@ -1,0 +1,16 @@
+﻿<Properties StartupItem="Tetris.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TetrisGame.cs">
+    <Files>
+      <File FileName="BlockStartPosition.cs" Line="1" Column="1" />
+      <File FileName="Board.cs" Line="454" Column="40" />
+      <File FileName="Block.cs" Line="1" Column="1" />
+      <File FileName="Input.cs" Line="106" Column="3" />
+      <File FileName="TetrisGame.cs" Line="211" Column="6" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
