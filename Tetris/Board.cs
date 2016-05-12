@@ -72,6 +72,11 @@ namespace Tetris
         /// </summary>
         public Block currentBlock;
 
+		/// <summary>
+		/// The block that is currently being stored
+		/// </summary>
+		public Block storedBlock;
+
         /// <summary>
         /// The number of visible columns on the board
         /// </summary>
@@ -331,6 +336,16 @@ namespace Tetris
                 currentBlock.x++;
         }
 
+
+
+		public void swapBlock(){
+			if (canSwap ()) {
+				Block blk = currentBlock;
+				currentBlock = storedBlock;
+				storedBlock = blk;
+			}
+		}
+
         #endregion blockMovement
 
         #region blockPositionChecks
@@ -424,6 +439,26 @@ namespace Tetris
 
             return canDrop;
         }
+
+		private Boolean canSwap()
+		{
+			if (storedBlock == null) {
+				// spawn a new block
+				storedBlock = blockSpawner.Next();
+			}
+			Boolean canSwap = true;
+
+			storedBlock.y = currentBlock.y;
+			storedBlock.x = currentBlock.x;
+
+			Block whenSwap= storedBlock.Clone();
+
+			if (!canBeHere(whenSwap))
+				canSwap = false;
+
+			return canSwap;
+		}
+
 
         /// <summary>
         /// Checks to see whether there's something in the way to one side of the block
